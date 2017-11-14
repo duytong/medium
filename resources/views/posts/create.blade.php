@@ -46,7 +46,7 @@
                                 </label>
                             </div>
                             <input type="hidden" id="post-id" name="post_id">
-                            <input type="submit" id="btn-submit" class="btn bg-success box-shadow float-right" name="publish" value="Publish" data-toggle="tooltip" data-placement="top" title="Publishing will become available after you start writing and select a topic.">
+                            <input type="submit" id="btn-submit" class="btn bg-success btn-shadow float-right" name="publish" value="Publish" data-toggle="tooltip" data-placement="top" title="Publishing will become available after you start writing and select a topic.">
                             @if ($errors->has('image'))
                                 <div class="alert alert-bar bd-none text-white card-shadow" role="alert">{{ $errors->first('image') }}</div>
                             @endif
@@ -59,9 +59,6 @@
 @endsection
 @section('script')
     <script>
-        // Select2
-        
-
         // Search tags
         $(function () {
             var urlSearchTags = window.location.origin + '/search-tags';
