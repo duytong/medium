@@ -91,8 +91,8 @@ class PostController extends Controller
     public function show(Request $request, $author, $slug)
     {
         $post = Post::where('slug', $slug)->first();
-        $randomPosts = Post::inRandomOrder()->take(3)->get();
         Post::where('id', $post->id)->increment('view');
+        $randomPosts = Post::inRandomOrder()->where('id', '!=', $post->id)->take(3)->get();
         $comments = $post->comments()->orderBy('created_at', 'DESC')->paginate(5);
         $lastPage = $comments->lastPage();
 

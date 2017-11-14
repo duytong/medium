@@ -11,13 +11,17 @@ class PageController extends Controller
     /**
      * Display a listing of posts from home.
      *
-     * @param  Request  $request
-     * @return \Illuminate\View\View
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function welcome(Request $request)
     {
         $topics = Topic::all();
     	$popularPosts = Post::orderBy('view', 'DESC')->take(4)->get();
+
+        foreach ($popularPosts as $popularPost) {
+            $popularPostsIds[] = $popularPost->id;
+        }
 
         if (auth()->check()) {
             // Get all of users that are following by this user.
@@ -55,7 +59,7 @@ class PageController extends Controller
                 $exploreMoreTopics = Topic::take(3)->get();
             }
 
-            $recommendationPosts = Post::inRandomOrder()->take(4)->get();
+            $recommendationPosts = Post::inRandomOrder()->whereNotIn('id', $popularPostsIds)->take(4)->get();
 
             return view('pages.home.index', compact('popularPosts', 'postsFromFollowers', 'subscribedTopics', 'paginationTopics', 'lastPage', 'exploreMoreTopics', 'recommendationPosts'));
         }
@@ -65,8 +69,8 @@ class PageController extends Controller
     /**
      * Display a listing of posts popular.
      *
-     * @param  Request  $request
-     * @return \Illuminate\View\View
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function popular(Request $request)
     {
@@ -83,8 +87,8 @@ class PageController extends Controller
     /**
      * Display a listing of posts from follwers.
      *
-     * @param  Request  $request
-     * @return \Illuminate\View\View
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function followers(Request $request)
     {
@@ -112,8 +116,8 @@ class PageController extends Controller
     /**
      * Display a listing of posts random.
      *
-     * @param  Request  $request
-     * @return \Illuminate\View\View
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function recommendation(Request $request)
     {

@@ -76,18 +76,17 @@ Route::post('unlike/{id}', 'LikeController@destroy');
 
 // Comment
 Route::post('post/comment', 'CommentController@store');
+Route::get('{post}/comments', 'CommentController@data');
 
 // Followable
 Route::post('attach/{object}/{id}', 'FollowableController@attach');
 Route::post('detach/{object}/{id}', 'FollowableController@detach');
 
-// Mark all notifications as read
+// Mark notification as read
+Route::get('mark-as-read/{id}','NotificationController@markAsRead');
 Route::get('mark-all-as-read', function () {
 	auth()->user()->unreadNotifications->markAsRead();
 });
-
-// Mark notification as read
-Route::get('mark-as-read/{id}','NotificationController@markAsRead');
 
 // Tags
 Route::get('tag/{slug}', 'TagController@show')->name('tag.show');
@@ -103,9 +102,7 @@ Route::get('autocomplete', 'SearchController@autocomplete');
 
 
 
-// Load more comment
-Route::get('post/{post}/comments', 'CommentController@index');
-Route::get('comment/{comment}/replies', 'ReplyController@show');
+
 
 
 
@@ -130,4 +127,3 @@ Route::get('followers', 'PageController@followers')->name('posts.followers');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

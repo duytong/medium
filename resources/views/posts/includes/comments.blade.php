@@ -32,7 +32,7 @@
 							@endif
 						@endif
 					@else
-						<button class="btn btn-shadow btn-action text-danger fade-in-scale" data-toggle="modal" data-target="#signin-modal">
+						<button class="btn btn-shadow btn-action text-danger fade-in-scale" data-toggle="modal" data-target="#modal-signin">
 							<i class="fa fa-heart"></i>
 						</button>
 						@if ($comment->likes->count() > 0)
@@ -54,7 +54,7 @@
 							</button>
 						@endif
 					@else
-						<button class="fade-in-scale text-default text-default-hover font-size-20" data-toggle="modal" data-target="#signin-modal">
+						<button class="fade-in-scale text-default text-default-hover font-size-20" data-toggle="modal" data-target="#modal-signin">
 							<i class="fa fa-bookmark-o"></i>
 						</button>
 					@endlogin

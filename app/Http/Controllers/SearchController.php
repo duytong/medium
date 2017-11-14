@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
 	/**
-	 * Search posts via jQuery UI - Autocomplete.
-	 * @param  Request $request
+	 * Search posts via jQuery UI Autocomplete.
+	 * 
+	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
     public function autocomplete(Request $request)
@@ -42,16 +43,14 @@ class SearchController extends Controller
     /**
 	 * Display a listing search results.
 	 *
-	 * @param  Request $request
-	 * @return \Illuminate\View\View
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\View\Response
 	 */
 	public function search(Request $request)
 	{
 		$term = request('term');
 		if ($term != '') {
-			$posts = \App\Post::where('slug', 'LIKE', '%' . $term . '%')
-				->orWhere('body', 'LIKE', '%' . $term . '%')
-				->paginate(10);
+			$posts = \App\Post::where('slug', 'LIKE', '%' . $term . '%')->paginate(10);
 		}
 		
 		return view('pages.search', compact('posts', 'term'));

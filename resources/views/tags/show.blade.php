@@ -40,7 +40,7 @@
 									<div class="font-size-12">{{ $post->createdAt() }}</div>
 								</div>
 								<div id="popover-content" class="d-none">
-									@include('includes.popover-user')
+									@include('includes.popover_user')
 								</div>
 							</div>
 							<div class="d-flex flex-column justify-content-between">
@@ -78,7 +78,7 @@
 												@endif
 											@endif
 										@else
-											<button class="btn btn-shadow btn-action text-danger fade-in-scale" data-toggle="modal" data-target="#signin-modal">
+											<button class="btn btn-shadow btn-action text-danger fade-in-scale" data-toggle="modal" data-target="#modal-signin">
 												<i class="fa fa-heart"></i>
 											</button>
 											@if ($post->likes->count() > 0)
@@ -111,7 +111,7 @@
 					                            </button>
 					                        @endif
 					                    @else
-					                        <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#signin-modal">
+					                        <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
 					                            <i class="fa fa-bookmark-o"></i>
 					                        </button>
 					                    @endlogin

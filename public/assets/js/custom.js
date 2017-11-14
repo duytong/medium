@@ -68,6 +68,17 @@ if (window.location.hash && window.location.hash == '#_=_') {
 history.pushState('', document.title, window.location.pathname);
 if (window.location.hash == '#_=_') window.location.hash = '';
 
+// Fixed footer
+$(function () {
+	$('.modal').on('show.bs.modal', function () {
+		$('.footer').css('left', '-17px');
+	});
+
+	$('.modal').on('hide.bs.modal', function () {
+		$('.footer').css('left', 0);
+	});
+});
+
 // Create post
 $(function () {
 	// Triggered select2
@@ -167,41 +178,6 @@ $(function () {
 		}, 100);
 	});
 });
-
-
-// Load more response
-var pathname = window.location.pathname;
-var lastName = pathname.split('/');
-var result = lastName[lastName.length - 2] + '/' + lastName[lastName.length - 1];
-var postId = $('.publish-response').data('post-id');
-var page = 1;
-
-$('.show-responses').click(function () {
-	page++;
-
-	if (page == $('.data-responses').data('page')) {
-		$('.show-responses').hide();
-	}
-
-	$.ajax({
-		url:  'story/' + postId + '/responses/?page=' + page,
-		type: 'GET',
-		success: function (data) {
-			$('#data-responses').append(data);
-		}
-	})
-});
-
-
-
-
-
-
-
-
-
-
-
 
 // Autosave post
 function autoSave() {
@@ -669,6 +645,38 @@ $(function () {
 			}
 		});
 	});
+});
+
+// Load more comments
+var page = 1;
+var pathname = window.location.pathname;
+var postId = $('.publish-comment').data('post-id');
+var btn = $('.show-comments');
+var lastPage = $('.data-comments').data('page');
+var beforeSend = $('.spinner');
+beforeSend.hide();
+
+btn.click(function () {
+	page++;
+
+	if (page == lastPage) {
+		btn.hide();
+	}
+
+	$.ajax({
+		url:  postId + '/comments/?page=' + page,
+		type: 'GET',
+		beforeSend: function () {
+			btn.hide();
+			beforeSend.show();
+		},
+		success: function (data) {
+			$('.lazy').lazy();
+			beforeSend.hide();
+			btn.show();
+			$('.data-comments').append(data);
+		}
+	})
 });
 
 $(function () {

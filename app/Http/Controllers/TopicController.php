@@ -10,7 +10,7 @@ class TopicController extends Controller
     /**
      * Display a listing of topics.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
@@ -29,9 +29,9 @@ class TopicController extends Controller
     }
 
     /**
-     * Show the given topic.
+     * Show topic.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $slug)
     {

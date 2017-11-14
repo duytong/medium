@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class SignoutController extends Controller
 {
 	/**
-     * Logging out.
+     * Signing out.
      *
      * @return \Illuminate\Http\RedirectResponse
      */

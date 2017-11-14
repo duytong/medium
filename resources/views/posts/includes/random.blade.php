@@ -18,7 +18,7 @@
 					<span class="font-size-12">{{ $randomPost->createdAt() }}</span>
 				</div>
 				<div id="popover-content" class="d-none">
-					@include('includes.popover-user')
+					@include('includes.popover_user_2')
 				</div>
 			</div>
 			<div class="like-action d-flex align-items-center">
@@ -43,7 +43,7 @@
 						@endif
 					@endif
 				@else
-					<button class="btn btn-shadow btn-action text-danger fade-in-scale" data-toggle="modal" data-target="#signin-modal">
+					<button class="btn btn-shadow btn-action text-danger fade-in-scale" data-toggle="modal" data-target="#modal-signin">
 						<i class="fa fa-heart"></i>
 					</button>
 					@if ($randomPost->likes->count() > 0)
@@ -66,7 +66,7 @@
 						</button>
 					@endif
 				@else
-					<button class="fade-in-scale text-default text-default-hover font-size-20" data-toggle="modal" data-target="#signin-modal">
+					<button class="fade-in-scale text-default text-default-hover font-size-20" data-toggle="modal" data-target="#modal-signin">
 						<i class="fa fa-bookmark-o"></i>
 					</button>
 				@endlogin

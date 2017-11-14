@@ -86,19 +86,13 @@ textarea {
 	color: rgba(0, 0, 0, .54) !important;
 }
 .text-default-hover:hover {
-	color: rgba(0, 0, 0, .68) !important;
+	color: rgba(0, 0, 0, .84) !important;
 }
 .text-black {
 	color: rgba(0, 0, 0, .68) !important;
 }
-.text-black-hover:hover {
-	color: rgba(0, 0, 0, .84) !important;
-}
 .text-dark {
 	color: rgba(0, 0, 0, .84) !important;
-}
-.text-dark-hover:hover {
-	color: rgba(0, 0, 0, .94) !important;
 }
 .text-success {
 	color: #03a87c !important;
@@ -426,8 +420,9 @@ footer {
 	border-radius: 2px;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 0 1px rgba(0, 0, 0, .08) !important;
 }
-border-radius: 2px;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .16), 0 0 0 1px rgba(0, 0, 0, .08) !important
-box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 7px;border-radius: 3px
+.card-shadow-hover:hover {
+	box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .16), 0 0 0 2px rgba(0, 0, 0, .08) !important;
+}
 .bd-radius-2 {
 	border-radius: 2px;
 }

@@ -4,7 +4,7 @@
 			@login
 				d-none
 			@endlogin
-		" data-toggle="modal" data-target="#signin-modal">Getting started</button>
+		" data-toggle="modal" data-target="#modal-signin">Getting started</button>
 		<a href="javascript:;" class="mr-16 text-default hover-underline">Help</a>
 		<a href="javascript:;" class="mr-16 text-default hover-underline">Status</a>
 		<a href="javascript:;" class="mr-16 text-default hover-underline">Blog</a>

@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class TagController extends Controller
 {
 	/**
-	 * Show the given tag.
+	 * Show tag.
 	 * 
-	 * @param  string $slug
-	 * @return \Illuminate\View\View
+	 * @param  string  $slug
+	 * @return \Illuminate\Http\Response
 	 */
 	public function show($slug)
 	{
@@ -22,10 +22,10 @@ class TagController extends Controller
 	}
 
 	/**
-	 * Show the given latest posts.
+	 * Show latest posts assigned this tag.
 	 * 
-	 * @param  string $slug
-	 * @return \Illuminate\View\View
+	 * @param  string  $slug
+	 * @return \Illuminate\Http\Response
 	 */
 	public function latest($slug)
 	{
@@ -38,8 +38,8 @@ class TagController extends Controller
 	/**
 	 * Search tags via jQuery Tokeninput.
 	 * 
-	 * @param  Request $request
-	 * @return \Illuminate\View\Response
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\JsonResponse
 	 */
     public function search(Request $request) {
         $keyword = request('q');

@@ -15,12 +15,14 @@ class CommentTableSeeder extends Seeder
         $faker = Faker::create();
 
         for ($i = 0; $i < 900; $i++) {
+            $userId = \App\User::inRandomOrder()->value('id');
+            $postId = \App\Post::inRandomOrder()->value('id');
             $timestamps = Carbon\Carbon::now();
 
         	$comments[] = [
         		'id' => $faker->uuid,
-        		'user_id' => App\User::inRandomOrder()->select('id')->first(),
-				'post_id' => App\Post::inRandomOrder()->select('id')->first(),
+        		'user_id' => $userId,
+				'post_id' => $postId,
         		'body' => $faker->paragraph,
         		'created_at' => $timestamps,
         		'updated_at' => $timestamps

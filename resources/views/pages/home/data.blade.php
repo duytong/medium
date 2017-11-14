@@ -3,7 +3,7 @@
         <div class="mb-30 last-page" data-page="{{ $lastPage }}">
             <div class="d-flex justify-content-between align-items-center mb-30 bd-bottom">
                 <span class="block-title pb-20">
-                    <a href="{{ $paginationTopic->path() }}" class="font-size-20 font-weight-bold text-dark text-dark-hover" title="{{ $paginationTopic->name }}">{{ $paginationTopic->name }}</a>
+                    <a href="{{ $paginationTopic->path() }}" class="font-size-20 font-weight-bold text-dark" title="{{ $paginationTopic->name }}">{{ $paginationTopic->name }}</a>
                 </span>
                 <a href="{{ $paginationTopic->path() }}" class="d-flex align-items-center pb-20 font-size-12 text-default text-default-hover">
                     <span class="mr-5 text-uppercase">More</span>
@@ -44,7 +44,7 @@
                                             <div>{{ $post->createdAt() }}</div>
                                         </div>
                                         <div id="popover-content" class="d-none">
-                                            @include('includes.popover-user')
+                                            @include('includes.popover_user')
                                         </div>
                                     </div>
                                     @if ($post->bookmarked())

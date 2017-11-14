@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 class ProfileController extends Controller
 {
 	/**
-     * Show the profile for the given user.
+     * Show the profile.
      *
-     * @param  int $id
-     * @return \Illuminate\View\View
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
      */
     public function profile($username)
     {
@@ -17,10 +17,10 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the following by this user.
+     * Display a listing the user is following.
      *
-     * @param  int $id
-     * @return \Illuminate\View\View
+     * @param  string   $id
+     * @return \Illuminate\Http\Response
      */
     public function following($username)
     {
@@ -33,10 +33,10 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show the followers by this user.
+     * Display a listing of followers.
      *
-     * @param  int $id
-     * @return \Illuminate\View\View
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
      */
     public function followers($username)
     {

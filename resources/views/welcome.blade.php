@@ -5,7 +5,7 @@
         <div class="container">
             <ul class="nav align-items-center">
                 <li class="nav-item py-3 pr-4 pr-sm-16">
-                    <a href="" class="text-dark text-dark-hover">Home</a>
+                    <a href="" class="text-dark">Home</a>
                 </li>
                 @foreach ($topics->slice(0, 13) as $topic)
                     <li class="nav-item py-3 pr-4 pr-sm-16">
@@ -13,7 +13,7 @@
                     </li>
                 @endforeach
                 <li class="get-started pl-4 bg-white">
-                    <button class="btn bg-success box-shadow" data-toggle="modal" data-target="#signin-modal">Get started</button>
+                    <button class="btn bg-success box-shadow" data-toggle="modal" data-target="#modal-signin">Get started</button>
                 </li>
             </ul>
         </div>
@@ -24,7 +24,7 @@
                 <div class="mb-20 font-serif font-size-50 font-weight-bold text-dark line-height-1">Interesting ideas that set your mind in motion.</div>
                 <div class="mb-40 font-size-20 text-dark">Hear directly from the people who know it best. From tech to politics to creativity and more — whatever your interest, we’ve got you covered.</div>
                 <div class="d-flex align-items-center">
-                    <button class="btn bg-success box-shadow mr-3" data-toggle="modal" data-target="#signin-modal">Get started</button>
+                    <button class="btn bg-success box-shadow mr-3" data-toggle="modal" data-target="#modal-signin">Get started</button>
                     <a href="javscript:;" class="btn btn-outline-dark box-shadow-hover box-shadow-active">Learn more</a>
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="my-30">
                 <div class="d-flex justify-content-between align-items-center mb-30 bd-bottom">
                     <span class="block-title pb-20">
-                        <a href="{{ route('popular') }}" class="font-size-20 font-weight-bold text-dark text-dark-hover" title="Today’s top posts">Today’s top posts</a>
+                        <a href="{{ route('popular') }}" class="font-size-20 font-weight-bold text-dark" title="Today’s top posts">Today’s top posts</a>
                     </span>
                     <a href="{{ route('popular') }}" class="d-flex align-items-center pb-20 font-size-12 text-default text-default-hover">
                         <span class="mr-5 text-uppercase">More</span>
@@ -76,12 +76,12 @@
                                                 <div>{{ $post->createdAt() }}</div>
                                             </div>
                                             <div id="popover-content" class="d-none">
-                                                @include('includes.popover-user')
+                                                @include('includes.popover_user')
                                             </div>
                                         </div>
                                         @login
                                         @else
-                                            <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#signin-modal">
+                                            <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
                                                 <i class="fa fa-bookmark-o"></i>
                                             </button>
                                         @endlogin
@@ -97,7 +97,7 @@
                     <div class="d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-center bd-bottom mb-30">
                             <span class="block-title pb-20">
-                                <a href="{{ $topic->path() }}" class="font-size-20 font-weight-bold text-dark text-dark-hover" title="{{ $topic->name }}">{{ $topic->name }}</a>
+                                <a href="{{ $topic->path() }}" class="font-size-20 font-weight-bold text-dark" title="{{ $topic->name }}">{{ $topic->name }}</a>
                             </span>
                             <a href="{{ $topic->path() }}" class="d-flex align-items-center pb-20 font-size-12 text-default text-default-hover">
                                 <span class="mr-5 text-uppercase">More</span>
@@ -139,12 +139,12 @@
                                                             <div>{{ $post->createdAt() }}</div>
                                                         </div>
                                                         <div id="popover-content" class="d-none">
-                                                            @include('includes.popover-user')
+                                                            @include('includes.popover_user')
                                                         </div>
                                                     </div>
                                                     @login
                                                     @else
-                                                        <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#signin-modal">
+                                                        <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
                                                             <i class="fa fa-bookmark-o"></i>
                                                         </button>
                                                     @endlogin
@@ -192,12 +192,12 @@
                                                                 <div>{{ $post->createdAt() }}</div>
                                                             </div>
                                                             <div id="popover-content" class="d-none">
-                                                                @include('includes.popover-user')
+                                                                @include('includes.popover_user')
                                                             </div>
                                                         </div>
                                                         @login
                                                         @else
-                                                            <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#signin-modal">
+                                                            <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
                                                                 <i class="fa fa-bookmark-o"></i>
                                                             </button>
                                                         @endlogin
@@ -247,12 +247,12 @@
                                                                         <div>{{ $post->createdAt() }}</div>
                                                                     </div>
                                                                     <div id="popover-content" class="d-none">
-                                                                        @include('includes.popover-user')
+                                                                        @include('includes.popover_user')
                                                                     </div>
                                                                 </div>
                                                                 @login
                                                                 @else
-                                                                    <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#signin-modal">
+                                                                    <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
                                                                         <i class="fa fa-bookmark-o"></i>
                                                                     </button>
                                                                 @endlogin

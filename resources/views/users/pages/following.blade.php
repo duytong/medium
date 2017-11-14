@@ -24,7 +24,7 @@
 										<button id="attach" class="btn btn-success" data-id={{ $user->id }}>Follow</button>
 									@endif
 								@else
-									<button class="btn btn-success" data-toggle="modal" data-target="#signin-modal">Follow</button>
+									<button class="btn btn-success" data-toggle="modal" data-target="#modal-signin">Follow</button>
 								@endlogin
 							</div>
 						</div>

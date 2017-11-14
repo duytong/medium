@@ -13,7 +13,7 @@
 							<button id="attach" class="btn btn-success topic" data-id="{{ $topic->id }}">Subscribe</button>
 						@endif
 					@else
-						<button class="btn btn-success" data-toggle="modal" data-target="#signin-modal">Subcribe</button>
+						<button class="btn btn-success" data-toggle="modal" data-target="#modal-signin">Subcribe</button>
 					@endlogin
 				</div>
 				<h1 class="mb-2 font-size-32 font-weight-bold text-dark">{{ $topic->name }}</h1>

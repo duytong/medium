@@ -13,7 +13,7 @@ class PostTagTableSeeder extends Seeder
     {
         for ($i = 0; $i < 900; $i++) {
         	$post = \App\Post::inRandomOrder()->first();
-        	$tagId = \App\Tag::inRandomOrder()->select('id')->first();
+        	$tagId = \App\Tag::inRandomOrder()->value('id');
 			$post->tags()->attach($tagId);
         }
     }

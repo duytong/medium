@@ -11,24 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /**
-        * If empty the database, let's run it. Don't run all, let's run in turn.
-        */
-        $this->call(CategoryTableSeeder::class);
-        // Before running this line, let's change id in TopicTableSeeder.
-        $this->call(TopicTableSeeder::class);
-        $this->call(UserTableSeeder::class);
-        $this->call(PostTableSeeder::class);
-        
-        /**
-         * Create comments.
-         */
-        $this->call(CommentTableSeeder::class);
-
-        /**
-         * Create tags and attach tags for posts.
-         */
-        $this->call(TagTableSeeder::class);
-        $this->call(PostTagTableSeeder::class);
+        // Don't run all, let's run in turn.
+        $this->call([
+            CategoryTableSeeder::class,
+            // Before running TopicTableSeeder let's change category id in TopicTableSeeder.
+            TopicTableSeeder::class,
+            UserTableSeeder::class,
+            PostTableSeeder::class,
+            TagTableSeeder::class,
+            PostTagTableSeeder::class,
+            CommentTableSeeder::class
+        ]);
     }
 }

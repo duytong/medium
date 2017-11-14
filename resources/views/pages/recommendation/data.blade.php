@@ -31,7 +31,7 @@
                             <div>{{ $post->createdAt() }}</div>
                         </div>
                         <div id="popover-content" class="d-none">
-                            @include('includes.popover-user')
+                            @include('includes.popover_user')
                         </div>
                     </div>
                     @login
@@ -45,7 +45,7 @@
                             </button>
                         @endif
                     @else
-                        <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#signin-modal">
+                        <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
                             <i class="fa fa-bookmark-o"></i>
                         </button>
                     @endlogin

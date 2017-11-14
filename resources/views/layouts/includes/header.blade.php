@@ -102,7 +102,7 @@
 							</a>
 						</li>
 						<li class="nav-item ml-2">
-							<button class="nav-link pr-0 text-success" data-toggle="modal" data-target="#signin-modal">
+							<button class="nav-link pr-0 text-success" data-toggle="modal" data-target="#modal-signin">
 								Sign in / Sign up
 							</button>
 						</li>

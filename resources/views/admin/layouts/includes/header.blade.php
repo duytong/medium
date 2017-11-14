@@ -119,7 +119,7 @@
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
                                     <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/admin/images/notification_bg.jpg); background-size: cover;">
+                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/admin/images/bg_notification.jpg); background-size: cover;">
                                             <span class="m-dropdown__header-title">Notifications</span>
                                             <span class="m-dropdown__header-subtitle">System</span>
                                         </div>
@@ -149,7 +149,7 @@
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
                                     <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/admin/images/quick_actions_bg.jpg); background-size: cover;">
+                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/admin/images/bg_quick_actions.jpg); background-size: cover;">
                                             <span class="m-dropdown__header-title">Quick actions</span>
                                             <span class="m-dropdown__header-subtitle">Shortcuts</span>
                                         </div>
@@ -179,7 +179,7 @@
                                 <div class="m-dropdown__wrapper">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
                                     <div class="m-dropdown__inner">
-                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/admin/images/user_profile_bg.jpg); background-size: cover;">
+                                        <div class="m-dropdown__header m--align-center" style="background: url(assets/admin/images/bg_user_profile.jpg); background-size: cover;">
                                             <div class="m-card-user m-card-user--skin-dark">
                                                 <div class="m-card-user__pic">
                                                     <img src="{{ auth()->user()->pathImage() }}" class="m--img-rounded m--marginless">

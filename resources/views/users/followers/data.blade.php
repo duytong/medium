@@ -31,7 +31,7 @@
                             <div>{{ $post->createdAt() }}</div>
                         </div>
                         <div id="popover-content" class="d-none">
-                            @include('includes.popover-user')
+                            @include('includes.popover_user')
                         </div>
                     </div>
                     @if ($post->bookmarked())

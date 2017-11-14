@@ -12,24 +12,24 @@
 							<a href="{{ $post->user->path() }}" class="text-dark font-size-16 popover-trigger">{{ $post->user->name }}</a>
     						@login
 								@if (auth()->id() != $post->user->id)
-									@if (auth()->user()->isFollowing($post->user)) 
+									@if (auth()->user()->isFollowing($post->user))
 										<button id="detach" class="btn btn-shadow bg-success ml-2 py-0 px-2 font-size-12 d-none d-sm-block" data-id={{ $post->user->id }}>Following</button>
 									@else
 										<button id="attach" class="btn btn-success ml-2 py-0 px-2 font-size-12 d-none d-sm-block" data-id={{ $post->user->id }}>Follow</button>
 									@endif
 								@endif
 							@else
-								<button class="btn btn-success ml-2 py-0 px-2 font-size-12 d-none d-sm-block" data-toggle="modal" data-target="#signin-modal">Follow</button>
+								<button class="btn btn-success ml-2 py-0 px-2 font-size-12 d-none d-sm-block" data-toggle="modal" data-target="#modal-signin">Follow</button>
 							@endlogin
 						</div>
 						<div>{{ _substr($post->user->summary, 90) }}</div>
 						<div>{{ $post->createdAtShort() }}</div>
 					</div>
 					<div id="popover-content" class="d-none">
-						@include('includes.popover-user')
+						@include('includes.popover_user')
 					</div>
 				</div>
-				<div class="text-dark mt-3">
+				<div class="text-dark mt-5">
 					<h1 class="font-weight-bold line-height-1">{{ $post->title }}</h1>
 					@if (!file_exists($post->pathImage()))
 						<img class="mt-5 lazy w-full" data-src="{{ $post->pathImageError() }}">
@@ -70,7 +70,7 @@
 										@endif
 									@endif
 								@else
-									<button class="btn btn-shadow btn-action text-danger fade-in-scale" data-toggle="modal" data-target="#signin-modal">
+									<button class="btn btn-shadow btn-action text-danger fade-in-scale" data-toggle="modal" data-target="#modal-signin">
 										<i class="fa fa-heart"></i>
 									</button>
 									@if ($post->likes->count() > 0)
@@ -93,7 +93,7 @@
 									</button>
 								@endif
 							@else
-								<button class="fade-in-scale text-default text-default-hover font-size-20" data-toggle="modal" data-target="#signin-modal">
+								<button class="fade-in-scale text-default text-default-hover font-size-20" data-toggle="modal" data-target="#modal-signin">
 									<i class="fa fa-bookmark-o"></i>
 								</button>
 							@endlogin
@@ -105,7 +105,7 @@
 						</a>
 						<div class="d-flex flex-column justify-content-center pl-3 w-full">
 							<div class="d-flex justify-content-between align-items-center">
-								<a href="{{ $post->user->path() }}" class="text-dark text-dark-hover font-weight-bold font-size-18" title="{{ $post->user->name }}">
+								<a href="{{ $post->user->path() }}" class="text-dark font-weight-bold font-size-18" title="{{ $post->user->name }}">
 									{{ $post->user->name }}
 								</a>
 								@login
@@ -117,7 +117,7 @@
 										@endif
 									@endif
 								@else
-									<button class="btn btn-success" data-toggle="modal" data-target="#signin-modal">Follow</button>
+									<button class="btn btn-success" data-toggle="modal" data-target="#modal-signin">Follow</button>
 								@endlogin
 							</div>
 							<div class="text-black">{{ $post->user->summary }}</div>
@@ -127,55 +127,52 @@
 		</div>
 	</section>
 	<section class="mt-5">
-		<div class="container">
-			<div class="row">
-				@foreach ($randomPosts as $randomPost)
-					<div class="col-lg-4">
-						@include('posts.includes.random')
-					</div>
-				@endforeach
-			</div>
-			<div class="row justify-content-center mt-5">
-				<div class="col-lg-8
-					@login
-					@else
-						mb-5
-					@endlogin
-				">
-					<div class="text-black font-weight-bold mb-3">Comments</div>
-					@login
-						<div class="area-comment mb-5">
-							<div class="d-flex mb-3">
-								<a href="{{ auth()->user()->path() }}" class="text-dark">
-									<img data-src="{{ auth()->user()->pathImage() }}" class="lazy circle img-40" alt="{{ auth()->user()->name }}">
-								</a>
-								<div class="d-flex flex-column justify-content-center pl-2">
-									<a href="" class="text-success">{{ auth()->user()->name }}</a>
-									<span class="font-size-12 text-black typing">
-										{{ date('M d', strtotime(Carbon\Carbon::now())) }}
-									</span>
-								</div>
+		<div class="row">
+			@foreach ($randomPosts as $randomPost)
+				<div class="col-lg-4">
+					@include('posts.includes.random')
+				</div>
+			@endforeach
+		</div>
+		<div class="row justify-content-center mt-5">
+			<div class="col-lg-8
+				@login
+				@else
+					mb-5
+				@endlogin
+			">
+				<div class="text-black font-weight-bold mb-3">Comments</div>
+				@login
+					<div class="area-comment mb-5">
+						<div class="d-flex mb-3">
+							<a href="{{ auth()->user()->path() }}" class="text-dark">
+								<img data-src="{{ auth()->user()->pathImage() }}" class="lazy circle img-40" alt="{{ auth()->user()->name }}">
+							</a>
+							<div class="d-flex flex-column justify-content-center pl-2">
+								<a href="" class="text-success">{{ auth()->user()->name }}</a>
+								<span class="font-size-12 text-black typing">
+									{{ date('M d', strtotime(Carbon\Carbon::now())) }}
+								</span>
 							</div>
-							<textarea class="form-comment font-serif card-shadow p-4 w-full font-size-18 text-dark mb-3 bd-none"></textarea>
-							<button class="btn btn-shadow bg-success publish-comment" data-post-id="{{ $post->id }}">Publish</button>
-							<button class="btn btn-shadow text-default text-default-hover ml-2 cancel">Cancel</button>
 						</div>
-						<div class="raw-form cursor-text font-serif card-shadow text-default mb-5 p-4 font-size-18">
-							Write a comment
-						</div>
-					@else
-						<div class="mb-70 p-4 card-shadow bg-white cursor-text font-serif font-size-18 text-default" data-toggle="modal" data-target="#signin-modal">
-							Write a comment
-						</div>
-					@endlogin
-					<div id="data-comments">
-						@include('posts.includes.comments')
+						<textarea class="form-comment font-serif card-shadow p-4 w-full font-size-18 text-dark mb-3 bd-none"></textarea>
+						<button class="btn btn-shadow bg-success publish-comment" data-post-id="{{ $post->id }}">Publish</button>
+						<button class="btn btn-shadow text-default text-default-hover ml-2 cancel">Cancel</button>
 					</div>
-					{{-- @foreach ($comments as $key => $comment)
-						@if ($key == 0 && $comment->count() > 5)
-							<button class="show-comments l-h-35 bd bd-radius-2 bd-hover text-success p-20 w-full">Show all comments</button>
-						@endif
-					@endforeach --}}
+					<div class="raw-form cursor-text font-serif card-shadow text-default mb-5 p-4 font-size-18">Write a comment</div>
+				@else
+					<div class="mb-70 p-4 card-shadow bg-white cursor-text font-serif font-size-18 text-default" data-toggle="modal" data-target="#modal-signin">Write a comment</div>
+				@endlogin
+				<div id="data-comments">
+					@include('posts.includes.comments')
+				</div>
+				@foreach ($comments as $key => $comment)
+					@if ($key == 0 && $comment->count() > 5)
+						<button class="show-comments card-shadow card-shadow-hover text-success p-4 w-full mb-5">Show all comments</button>
+					@endif
+				@endforeach
+				<div class="d-flex justify-content-center">
+					<div class="spinner mb-5"></div>
 				</div>
 			</div>
 		</div>
@@ -187,11 +184,11 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-8 d-flex justify-content-between align-items-center">
 						<div class="d-flex align-items-center">
-							<img src="{{ $post->pathImageUser() }}" class="img-40 circle lazy">
+							<img data-src="{{ $post->pathImageUser() }}" class="img-40 circle lazy">
 							<div class="pl-3 font-size-16 text-dark">Never miss a post from <span class="font-weight-bold">{{ $post->user->name }}</span>, when you sign up for Medium.</div>
 						</div>
 						<div>
-							<button class="btn btn-shadow bg-success text-uppercase font-weight-bold" data-toggle="modal" data-target="#signin-modal">Get started</button>
+							<button class="btn btn-shadow bg-success text-uppercase font-weight-bold" data-toggle="modal" data-target="#modal-signin">Get started</button>
 						</div>
 					</div>
 				</div>
