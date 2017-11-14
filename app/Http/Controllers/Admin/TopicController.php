@@ -56,7 +56,7 @@ class TopicController extends Controller
         $topic->overview = request('overview');
 
         $image = $request->file('image');
-        $extension = $avatar->getClientOriginalExtension();
+        $extension = $image->getClientOriginalExtension();
         $filename = time() . '_' . str_random(9) . '.' . $extension;
         $location = public_path('storage/topics/' . $filename);
         \Image::make($image)->resize(280, 180)->save($location);

@@ -24,17 +24,17 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */    
     public function create()
     {
-        return view('posts.create', compact('categories'));
+        return view('posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PostRequest $request
+     * @param  \Http\Requests\PostRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(PostRequest $request)
@@ -62,12 +62,8 @@ class PostController extends Controller
         $post->save();
         echo $post->id;
 
-        if ($request->publish) {
-            return redirect($post->path());
-        }
-
         if ($request->tags) {
-            $tagNames = $request->tags;
+            $tagNames = explode(',', $request->tags);
 
             foreach ($tagNames as $tagName) {
                 $tag = Tag::firstOrCreate([
@@ -79,8 +75,19 @@ class PostController extends Controller
 
             $post->tags()->sync($tagIds);
         }
+
+        if ($request->publish) {
+            return redirect($post->path());
+        }
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $author, $slug
+     * @return \Illuminate\Http\Response
+     */
     public function show(Request $request, $author, $slug)
     {
         $post = Post::where('slug', $slug)->first();
@@ -92,6 +99,12 @@ class PostController extends Controller
         return view('posts.show', compact('post', 'randomPosts', 'comments', 'lastPage'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         $post = Post::find($id);
@@ -99,6 +112,13 @@ class PostController extends Controller
         return view('posts.edit', compact('post', 'tags'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Http\Requests\PostRequest  $request
+     * @param  string  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(PostRequest $request, $id)
     {
         $post = Post::find($id);
@@ -113,9 +133,12 @@ class PostController extends Controller
         }
 
         if ($request->hasFile('image')) {
-            if (file_exists($post->pathImage())) {
-                unlink($post->pathImage());
+            if ($post->image != null) {
+                if (file_exists($post->pathImage())) {
+                    unlink($post->pathImage());
+                }
             }
+
             $image = $request->file('image');
             $fileName  = time() . '_' . str_random(9) . '.' . $image->getClientOriginalExtension();
             $location = public_path('storage/posts/' . $fileName);
@@ -127,6 +150,7 @@ class PostController extends Controller
 
         if ($request->tags) {
             $tagNames = explode(',', $request->tags);
+
             foreach ($tagNames as $tagName) {
                 $tag = Tag::firstOrCreate([
                     'name' => $tagName,
@@ -134,6 +158,7 @@ class PostController extends Controller
                 ]);
                 $tagIds[] = $tag->id;
             }
+
             $post->tags()->sync($tagIds);
         } else {
             $post->tags()->detach();
@@ -144,10 +169,16 @@ class PostController extends Controller
         }
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
         $post = Post::find($id);
-        if (!empty($post->image)) {
+        if ($post->image != null) {
             if (file_exists($post->pathImage())) {
                 unlink($post->pathImage());
             }
