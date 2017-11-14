@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
 
 // Homepage
 Route::get('/', 'PageController@welcome')->name('welcome');
@@ -20,7 +19,7 @@ Route::get('signin/{provider}', 'Auth\SocialController@redirectToProvider');
 Route::get('signin/{provider}/callback', 'Auth\SocialController@handleProviderCallback');
 Route::get('signout', 'SignoutController@signout')->name('signout');
 
-// Route::view('login', 'admin.pages.login');
+Route::view('login', 'admin.pages.login');
 
 // Area administrator
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
@@ -47,8 +46,10 @@ Route::get('topic/{slug}', 'TopicController@show');
 
 // Posts
 Route::resource('posts', 'PostController', ['only' => ['store', 'update', 'destroy']]);
-Route::get('new-post', 'PostController@create')->name('posts.create');
-Route::get('{id}/edit', 'PostController@edit')->name('posts.edit');
+Route::group(['middleware' => 'login'], function () {
+	Route::get('new-post', 'PostController@create')->name('posts.create');
+	Route::get('{id}/edit', 'PostController@edit')->name('posts.edit');
+});
 Route::get('@{author}/{slug}', 'PostController@show')->name('posts.show');
 
 // Profile
@@ -126,3 +127,7 @@ Route::get('followers', 'PageController@followers')->name('posts.followers');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

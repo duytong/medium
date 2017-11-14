@@ -18,7 +18,7 @@
 		</div>
 	</main>
 
-	@include('layouts.includes.modal')
+	@include('includes.modal')
 
 	<script src="assets/js/custom.js"></script>
 	<script>

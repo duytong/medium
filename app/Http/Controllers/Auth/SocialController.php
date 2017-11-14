@@ -30,12 +30,12 @@ class SocialController extends Controller
 
         if (!$social) {
             if (!$email) {
-                if ($provider == 'github') {
+                if ($provider == 'github' || $provider == 'facebook') {
                     $file = file_get_contents($socialite->avatar);
                 } else {
                     $file = file_get_contents($socialite->avatar_original);
                 }
-                
+               
                 $filename  = time() . '_' . str_random(9) . '.jpg';
                 $location  = public_path('storage/users/' . $filename);
                 \Image::make($file)->save($location);
@@ -50,7 +50,7 @@ class SocialController extends Controller
 
                 switch ($provider) {
                     case 'facebook':
-                        $providerUrl = $socialite->profileUrl;
+                        $providerUrl = 'https://facebook.com/' . $socialite->id;
                         break;
                     case 'twitter':
                         $providerUrl = 'https://twitter.com/' . $socialite->nickname;
@@ -77,7 +77,7 @@ class SocialController extends Controller
 
                 switch ($provider) {
                     case 'facebook':
-                        $providerUrl = $socialite->profileUrl;
+                        $providerUrl = 'https://facebook.com/' . $socialite->id;
                         break;
                     case 'twitter':
                         $providerUrl = 'https://twitter.com/' . $socialite->nickname;

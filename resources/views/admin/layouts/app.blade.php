@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>@yield('title')</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <base href="{{ asset('') }}">
         <link rel="stylesheet" href="assets/admin/css/vEndors.bundle.css">
         <link rel="stylesheet" href="assets/admin/css/style.min.css">
