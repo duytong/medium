@@ -18,6 +18,8 @@
 		</div>
 	</main>
 
+	@include('layouts.includes.footer')
+
 	@include('includes.modal')
 
 	<script src="assets/js/custom.js" async></script>

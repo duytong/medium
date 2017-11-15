@@ -5,7 +5,10 @@
 		<div class="d-flex mb-5">
 			<div class="d-flex flex-column w-full">
 				<div class="d-flex justify-content-between align-items-center">
-					<span class="font-size-16">Handpicked by Medium Staff</span>
+					<div class="d-flex flex-column">
+						<h1 class="mb-2 font-size-32 font-weight-bold text-dark">{{ $topic->name }}</h1>
+						<h2 class="font-size-16 font-weight-normal text-dark">{{ $topic->overview }}</h2>
+					</div>
 					@login
 						@if (auth()->user()->subscribed($topic))
 							<button id="detach" class="btn bg-success box-shadow topic" data-id="{{ $topic->id }}">Subscribed</button>
@@ -16,12 +19,10 @@
 						<button class="btn btn-success" data-toggle="modal" data-target="#modal-signin">Subcribe</button>
 					@endlogin
 				</div>
-				<h1 class="mb-2 font-size-32 font-weight-bold text-dark">{{ $topic->name }}</h1>
-				<h2 class="font-size-20 text-black">{{ $topic->overview }}</h2>
 			</div>
 		</div>
 		<div class="d-flex font-size-16">
-			<span class="mr-20">Related topics</span>
+			<span class="mr-3">Related topics</span>
 			@foreach ($relatedTopics as $key => $relatedTopic)
 				@if ($key < 2)
 					<a href="{{ $relatedTopic->path() }}" class="text-dark hover-underline" title="{{ $relatedTopic->name }}">

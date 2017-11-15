@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('title', 'Today’s top posts - Medium')
+@section('title', 'Posts from followers - Medium')
 @section('content')
 	<section class="my-5">
-		<h1 class="pb-2 font-size-32 font-weight-bold text-dark">Today’s top posts</h1>
-		<h2 class="font-size-16 font-weight-normal text-dark">What’s trending on Medium right now.</h2>
+		<h1 class="pb-2 font-size-32 font-weight-bold text-dark">Posts from followers</h1>
+		<h2 class="font-size-16 font-weight-normal text-dark">What's new from followrers.</h2>
 	</section>
 	<section>
 		<div class="d-flex mb-30 bd-bottom">

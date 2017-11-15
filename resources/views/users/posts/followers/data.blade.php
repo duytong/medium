@@ -1,5 +1,5 @@
 @foreach ($posts as $post)
-    <div class="col-lg-6 last-page" data-page="{{ $lastPage }}">
+	<div class="col-lg-6 last-page" data-page="{{ $lastPage }}">
         <div class="d-flex flex-column flex-lg-row w-full h-250 h-md-auto mb-30 card-shadow">
             <a href="{{ $post->path() }}" class="m-2 mr-0 mr-md-10" title="{{ $post->title }}">
                 @if (!file_exists($post->pathImage()) || $post->image == null)
@@ -32,21 +32,15 @@
                             @include('includes.popover_user')
                         </div>
                     </div>
-                    @login
-                        @if ($post->bookmarked())
-                            <button id="unbookmark" class="fade-in-scale font-size-20 text-dark post" data-id="{{ $post->id }}" data-bookmark-id="{{ $post->getBookmarkIdAttribute() }}">
-                                <i class="fa fa-bookmark"></i>
-                            </button>
-                        @else
-                            <button id="bookmark" class="fade-in-scale font-size-20 text-default text-default-hover post" data-id="{{ $post->id }}">
-                                <i class="fa fa-bookmark-o"></i>
-                            </button>
-                        @endif
+                    @if ($post->bookmarked())
+                        <button id="unbookmark" class="fade-in-scale font-size-20 text-dark post" data-id="{{ $post->id }}" data-bookmark-id="{{ $post->getBookmarkIdAttribute() }}">
+                            <i class="fa fa-bookmark"></i>
+                        </button>
                     @else
-                        <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
+                        <button id="bookmark" class="fade-in-scale font-size-20 text-default text-default-hover post" data-id="{{ $post->id }}">
                             <i class="fa fa-bookmark-o"></i>
                         </button>
-                    @endlogin
+                    @endif
                 </div>
             </div>
         </div>

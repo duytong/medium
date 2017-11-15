@@ -13,8 +13,8 @@
 				</form>
 				<ul class="navbar-nav flex-row">
 					@login
-						<li class="nav-item mr-2 d-md-none ">
-							<a href="{{ route('search') }}" class="search-mobile nav-link text-default ">
+						<li class="nav-item mr-2 d-md-none">
+							<a href="{{ route('search') }}" class="search-mobile nav-link text-default">
 								<i class="fa fa-search font-size-20"></i>
 							</a>
 						</li>
@@ -30,9 +30,9 @@
 									</span>
 								@endunreadNotifications
 							</a>
-							<div class="dropdown-menu card-shadow m-0 p-0 bd-none bd-radius-2 font-size-14 notifications-feed">
+							<div class="dropdown-menu card-shadow m-0 p-0 bd-none font-size-14 notifications-feed">
 								@notifications
-									<div class="py-2 px-3">
+									<div class="py-2 px-4">
 										<span class="text-black">Notifications</span>
 										<button class="float-right text-success hover-underline mark-all-as-read">Mark all as read</button>
 									</div>
@@ -43,19 +43,19 @@
 										@else
 											<div class="noti-item">
 										@endif
-												<a href="{!! $notification->data['path'] !!}" class="d-flex block py-2 px-3 text-dark notification" data-id="{{ $notification->id }}">
-													<img src="{!! $notification->data['pathImage'] !!}" class="circle img-48">
+												<a href="{!! $notification->data['path'] !!}" class="d-flex block py-2 px-4 text-dark notification" data-id="{{ $notification->id }}">
+													<img src="{!! $notification->data['pathImage'] !!}" class="circle img-40">
 													<div class="noti-info d-flex flex-column justify-content-center ml-3">
 														<div>
-															<span class="font-weight-600">{!! $notification->data['name'] !!}</span>
+															<span class="font-weight-bold">{!! $notification->data['name'] !!}</span>
 															<span class="text-black">{!! $notification->data['content'] !!}</span>
 														</div>
 														<div class="text-default">
 															@switch ($notification->type)
-																@case ('App\Notifications\NotificationComment' || 'App\Notifications\NotificationReply')
+																@case ('App\Notifications\NotificationComment')
 																	<i class="fa fa-comments text-success mr-1"></i>
 																	@break
-																@case ('App\Follow')
+																@case ('App\Notifications\Follow')
 																	<i class="fa fa-rss text-success mr-1"></i>
 																	@break
 																@default
@@ -68,7 +68,7 @@
 											</div>
 									@endforeach
 									<div class="py-2 text-center">
-										<a href="" class="text-success hover-underline">See all</a>
+										<a href="javascript:;" class="text-success hover-underline">See all</a>
 									</div>
 								@else
 									<div class="noti-item d-flex justify-content-center align-items-center h-60 bd-none">
@@ -77,34 +77,32 @@
 								@endnotifications
 							</div>
 						</li>
-						<li class="nav-item nav-dropdown">
-						<a href="" class="dropdown-toggle block ml-16 user-action" data-toggle="dropdown">
-							<img data-src="{{ auth()->user()->pathImage() }}" class="circle img-35 lazy">
-						</a>
-							<div class="dropdown-menu card-shadow py-13 bd-none bd-radius-2 font-size-14 user-action-list">
-								<a href="javascript:;" class="dropdown-item p-8-24 bg-none text-black">Become a member</a>
+						<li class="nav-item nav-dropdown ml-2">
+							<a class="dropdown-toggle block" data-toggle="dropdown">
+								<img data-src="{{ auth()->user()->pathImage() }}" class="circle img-35 lazy">
+							</a>
+							<div class="dropdown-menu card-shadow py-2 bd-none font-size-14 user-action">
+								<a href="javascript:;" class="dropdown-item py-2 px-4 bg-none text-black">Become a member</a>
 								<div class="dropdown-divider"></div>
-								<a href="{{ route('posts.create') }}" class="dropdown-item p-8-24 bg-none text-black">New post</a>
-								<a href="{{ route('drafts') }}" class="dropdown-item p-8-24 bg-none text-black">Posts</a>
-								<a href="javascript:;" class="dropdown-item p-8-24 bg-none text-black">Stats</a>
-								<a href="{{ route('bookmark') }}" class="dropdown-item p-8-24 bg-none text-black">Bookmarks</a>
+								<a href="{{ route('posts.create') }}" class="dropdown-item py-2 px-4 bg-none text-black">New post</a>
+								<a href="{{ route('drafts') }}" class="dropdown-item py-2 px-4 bg-none text-black">Posts</a>
+								<a href="javascript:;" class="dropdown-item py-2 px-4 bg-none text-black">Stats</a>
+								<a href="{{ route('bookmark') }}" class="dropdown-item py-2 px-4 bg-none text-black">Bookmarks</a>
 								<div class="dropdown-divider"></div>
-								<a href="{{ auth()->user()->path() }}" class="dropdown-item p-8-24 bg-none text-black">Profile</a>
-								<a href="javascript:;" class="dropdown-item p-8-24 bg-none text-black">Settings</a>
-								<a href="javascript:;" class="dropdown-item p-8-24 bg-none text-black">Help</a>
-								<a href="{{ route('signout') }}" class="dropdown-item p-8-24 bg-none text-black">Sign out</a>
+								<a href="{{ auth()->user()->path() }}" class="dropdown-item py-2 px-4 bg-none text-black">Profile</a>
+								<a href="javascript:;" class="dropdown-item py-2 px-4 bg-none text-black">Settings</a>
+								<a href="javascript:;" class="dropdown-item py-2 px-4 bg-none text-black">Help</a>
+								<a href="{{ route('signout') }}" class="dropdown-item py-2 px-4 bg-none text-black">Sign out</a>
 							</div>
 						</li>
 					@else
 						<li class="nav-item mr-2 d-md-none ">
-							<a href="{{ route('search') }}" class="search-mobile nav-link text-default ">
+							<a href="{{ route('search') }}" class="nav-link text-default">
 								<i class="fa fa-search font-size-20"></i>
 							</a>
 						</li>
 						<li class="nav-item ml-2">
-							<button class="nav-link pr-0 text-success" data-toggle="modal" data-target="#modal-signin">
-								Sign in / Sign up
-							</button>
+							<button class="nav-link pr-0 text-success" data-toggle="modal" data-target="#modal-signin">Sign in / Sign up</button>
 						</li>
 					@endlogin
 				</ul>

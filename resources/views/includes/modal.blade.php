@@ -3,16 +3,16 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span class="mt-10 mr-10" aria-hidden="true">&times;</span>
+                    <button type="button" class="close mt-2 mr-3" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="modal-signin card-shadow">
                         <div class="row justify-content-center">
                             <div class="col-lg-8">
                                 <div class="p-5 p-xs-20">
                                     <div class="text-center mb-4">
-                                        <h1 class="font-serif font-weight-bold text-dark mb-3">Welcome back</h1>
-                                        <h2 class="font-size-18 font-weight-normal text-dark">Sign in to access your personalized homepage. Follow authors, topics you love and pressing like for posts that matter to you.</h2>
+                                        <div class="font-serif font-size-40 font-weight-bold text-dark mb-3">Welcome back</div>
+                                        <div class="font-size-18 font-weight-normal text-dark">Sign in to access your personalized homepage. Follow authors, topics you love and pressing like for posts that matter to you.</div>
                                     </div>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <a href="signin/twitter" class="btn w-part-3 w-xs-full bg-white btn-shadow text-dark mb-3 font-size-16">

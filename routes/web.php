@@ -114,9 +114,9 @@ Route::get('autocomplete', 'SearchController@autocomplete');
 
 
 // Pages
-Route::get('popular', 'PageController@popular')->name('popular');
-Route::get('recommendation', 'PageController@recommendation')->name('recommendation');
-Route::get('followers', 'PageController@followers')->name('posts.followers');
+Route::get('popular', 'PageController@postsPopular')->name('posts.popular');
+Route::get('recommendation', 'PageController@postsRecommendation')->name('posts.recommendation');
+Route::get('followers', 'PageController@postsFollowers')->name('posts.followers');
 
 
 

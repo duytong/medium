@@ -57,8 +57,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
-    /*
-     * Get all of users that are followed by this user.
+    /**
+     * Get all of the users followed by a particular user.
      */
     public function users()
     {
@@ -90,8 +90,8 @@ class User extends Authenticatable
         return $this->users()->where('followable_id', $user->id)->exists();
     }
 
-    /*
-     * Get all of the topics that are subscribed by this user.
+    /**
+     * Get all of the topics subscribed by a particular user.
      */
     public function topics()
     {

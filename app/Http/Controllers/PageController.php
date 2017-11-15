@@ -17,14 +17,10 @@ class PageController extends Controller
     public function welcome(Request $request)
     {
         $topics = Topic::all();
-    	$popularPosts = Post::orderBy('view', 'DESC')->take(4)->get();
-
-        foreach ($popularPosts as $popularPost) {
-            $popularPostsIds[] = $popularPost->id;
-        }
+    	$postsPopular = Post::orderBy('view', 'DESC')->take(4)->get();
 
         if (auth()->check()) {
-            // Get all of users that are following by this user.
+            // Get all of the users followed by a particular user.
             $followers = auth()->user()->users->all();
 
             foreach ($followers as $follower) {
@@ -32,10 +28,10 @@ class PageController extends Controller
             }
 
             if (!empty($userId)) {
-                $postsFromFollowers = Post::whereIn('user_id', $userId)->orderBy('created_at', 'DESC')->take(4)->get();
+                $postsFollowers = Post::whereIn('user_id', $userId)->orderBy('created_at', 'DESC')->take(4)->get();
             }
 
-            // Get all of the topics that are subscribed by this user.
+            // Get all of the topics subscribed by a particular user.
             $subscribedTopics = auth()->user()->topics->all();
 
             foreach ($subscribedTopics as $subscribedTopic) {
@@ -54,16 +50,17 @@ class PageController extends Controller
 
             // Get all of the topics except subscribed topics.
             if (!empty($topicId)) {
-                $exploreMoreTopics = Topic::whereNotIn('id', $topicId)->take(3)->get();
+                $exploreTopics = Topic::whereNotIn('id', $topicId)->take(3)->get();
             } else {
-                $exploreMoreTopics = Topic::take(3)->get();
+                $exploreTopics = Topic::take(3)->get();
             }
+            
+            $postsRecommendation = Post::inRandomOrder()->take(4)->get();
 
-            $recommendationPosts = Post::inRandomOrder()->whereNotIn('id', $popularPostsIds)->take(4)->get();
-
-            return view('pages.home.index', compact('popularPosts', 'postsFromFollowers', 'subscribedTopics', 'paginationTopics', 'lastPage', 'exploreMoreTopics', 'recommendationPosts'));
+            return view('pages.home.index', compact('postsPopular', 'postsFollowers', 'subscribedTopics', 'paginationTopics', 'lastPage', 'exploreTopics', 'postsRecommendation'));
         }
-    	return view('welcome', compact('topics', 'popularPosts'));
+
+    	return view('welcome', compact('topics', 'postsPopular'));
     }
 
     /**
@@ -72,7 +69,7 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function popular(Request $request)
+    public function postsPopular(Request $request)
     {
     	$posts = Post::orderBy('view', 'DESC')->paginate(10);
         $lastPage = $posts->lastPage();
@@ -90,7 +87,7 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function followers(Request $request)
+    public function postsFollowers(Request $request)
     {
         if (auth()->check()) {
             // Get all of users that are following by this user.
@@ -104,22 +101,22 @@ class PageController extends Controller
             $lastPage = $posts->lastPage();
 
             if ($request->ajax()) {
-                return view('users.followers.data', compact('posts', 'lastPage'));
+                return view('users.posts.followers.data', compact('posts', 'lastPage'));
             }
 
-            return view('users.followers.index', compact('posts', 'lastPage'));
+            return view('users.posts.followers.index', compact('posts', 'lastPage'));
         }
 
         return view('errors.404');
     }
 
     /**
-     * Display a listing of posts random.
+     * Display a listing of posts recommendation.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function recommendation(Request $request)
+    public function postsRecommendation(Request $request)
     {
         $posts = Post::inRandomOrder()->paginate(10);
         $lastPage = $posts->lastPage();
