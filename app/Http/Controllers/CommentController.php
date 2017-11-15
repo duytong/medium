@@ -20,7 +20,7 @@ class CommentController extends Controller
     {
         if ($request->ajax()) {
             $post = Post::find($id);
-            $comments = $post->comments()->orderBy('created_at', 'DESC')->paginate(5);
+            $comments = $post->comments()->orderBy('created_at', 'DESC')->paginate(10);
             $lastPage = $comments->lastPage();
             return view('posts.includes.comments', compact('comments', 'lastPage'));
         }

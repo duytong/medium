@@ -90,7 +90,7 @@
 								<a href="{{ route('bookmark') }}" class="dropdown-item p-8-24 bg-none text-black">Bookmarks</a>
 								<div class="dropdown-divider"></div>
 								<a href="{{ auth()->user()->path() }}" class="dropdown-item p-8-24 bg-none text-black">Profile</a>
-								<a href="#" class="dropdown-item p-8-24 bg-none text-black">Settings</a>
+								<a href="javascript:;" class="dropdown-item p-8-24 bg-none text-black">Settings</a>
 								<a href="javascript:;" class="dropdown-item p-8-24 bg-none text-black">Help</a>
 								<a href="{{ route('signout') }}" class="dropdown-item p-8-24 bg-none text-black">Sign out</a>
 							</div>

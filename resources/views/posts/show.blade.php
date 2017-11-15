@@ -83,20 +83,20 @@
 								@endlogin
 							</div>
 							@login
-								@if ($post->bookmarked())
-									<button class="fade-in-scale text-dark font-size-20" id="unbookmark-post" data-id="{{ $post->id }}" data-bookmark-id="{{ $post->getBookmarkIdAttribute() }}">
-										<i class="fa fa-bookmark"></i>
-									</button>
-								@else
-									<button class="fade-in-scale text-default text-default-hover font-size-20" id="bookmark-post" data-id="{{ $post->id }}">
-										<i class="fa fa-bookmark-o"></i>
-									</button>
-								@endif
-							@else
-								<button class="fade-in-scale text-default text-default-hover font-size-20" data-toggle="modal" data-target="#modal-signin">
-									<i class="fa fa-bookmark-o"></i>
-								</button>
-							@endlogin
+		                        @if ($post->bookmarked())
+		                            <button id="unbookmark" class="fade-in-scale font-size-20 text-dark post" data-id="{{ $post->id }}" data-bookmark-id="{{ $post->getBookmarkIdAttribute() }}">
+		                                <i class="fa fa-bookmark"></i>
+		                            </button>
+		                        @else
+		                            <button id="bookmark" class="fade-in-scale font-size-20 text-default text-default-hover post" data-id="{{ $post->id }}">
+		                                <i class="fa fa-bookmark-o"></i>
+		                            </button>
+		                        @endif
+		                    @else
+		                        <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
+		                            <i class="fa fa-bookmark-o"></i>
+		                        </button>
+		                    @endlogin
 						</div>
 					</div>
 					<div class="d-flex align-items-center">
@@ -156,7 +156,7 @@
 							</div>
 						</div>
 						<textarea class="form-comment font-serif card-shadow p-4 w-full font-size-18 text-dark mb-3 bd-none"></textarea>
-						<button class="btn btn-shadow bg-success publish-comment" data-post-id="{{ $post->id }}">Publish</button>
+						<button class="btn btn-shadow bg-success publish-comment" data-id="{{ $post->id }}">Publish</button>
 						<button class="btn btn-shadow text-default text-default-hover ml-2 cancel">Cancel</button>
 					</div>
 					<div class="raw-form cursor-text font-serif card-shadow text-default mb-5 p-4 font-size-18">Write a comment</div>
@@ -167,12 +167,12 @@
 					@include('posts.includes.comments')
 				</div>
 				@foreach ($comments as $key => $comment)
-					@if ($key == 0 && $comment->count() > 5)
+					@if ($key == 0 && $comment->count() > 10)
 						<button class="show-comments card-shadow card-shadow-hover text-success p-4 w-full mb-5">Show all comments</button>
 					@endif
 				@endforeach
 				<div class="d-flex justify-content-center">
-					<div class="spinner mb-5"></div>
+					<div class="spinner mb-5" style="display: none"></div>
 				</div>
 			</div>
 		</div>

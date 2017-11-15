@@ -46,7 +46,7 @@
 			@include('topics.posts.data')
 		</div>
 		<div class="d-flex justify-content-center">
-			<div class="spinner mb-70"></div>
+			<div class="spinner mb-70" style="display: none"></div>
 		</div>
 	</section>
 @endsection

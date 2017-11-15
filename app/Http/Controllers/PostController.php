@@ -93,7 +93,7 @@ class PostController extends Controller
         $post = Post::where('slug', $slug)->first();
         Post::where('id', $post->id)->increment('view');
         $randomPosts = Post::inRandomOrder()->where('id', '!=', $post->id)->take(3)->get();
-        $comments = $post->comments()->orderBy('created_at', 'DESC')->paginate(5);
+        $comments = $post->comments()->orderBy('created_at', 'DESC')->paginate(10);
         $lastPage = $comments->lastPage();
 
         return view('posts.show', compact('post', 'randomPosts', 'comments', 'lastPage'));

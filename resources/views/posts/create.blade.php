@@ -58,33 +58,31 @@
     </div>
 @endsection
 @section('script')
-    <script>
+    <script async>
         // Search tags
-        $(function () {
-            var urlSearchTags = window.location.origin + '/search-tags';
+        var urlSearchTags = window.location.origin + '/search-tags';
 
-            $('#tags').tokenInput(
-                urlSearchTags,
-                {
-                    theme: 'facebook',
-                    tokenLimit: 5,
-                    allowFreeTagging: true,
-                    hintText: false,
-                    tokenValue: 'name',
-                    noResultsText: 'Cannot find tag available! You can create a new tag by pressing Tab.',
-                    resultsFormatter: function (item) {
-                        return '<li>' + item.name + '<span class="ml-5">(' + item.assigned_tag + ')</span>' + '</li>';
-                    }
+        $('#tags').tokenInput(
+            urlSearchTags,
+            {
+                theme: 'facebook',
+                tokenLimit: 5,
+                allowFreeTagging: true,
+                hintText: false,
+                tokenValue: 'name',
+                noResultsText: 'Cannot find tag available! You can create a new tag by pressing Tab.',
+                resultsFormatter: function (item) {
+                    return '<li>' + item.name + '<span class="ml-5">(' + item.assigned_tag + ')</span>' + '</li>';
                 }
-            );
+            }
+        );
 
+        $('#token-input-tags').attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
+        $('#token-input-tags').bind('change keyup', function () {
+            $(this).attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
+        });
+        $(document).bind('change', function () {
             $('#token-input-tags').attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
-            $('#token-input-tags').bind('change keyup', function () {
-                $(this).attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
-            });
-            $(document).bind('change', function () {
-                $('#token-input-tags').attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
-            });
         });
     </script>
 @endsection

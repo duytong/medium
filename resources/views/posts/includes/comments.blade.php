@@ -1,5 +1,5 @@
 @foreach ($comments as $comment)
-	<div class="card-shadow mb-5 data-comments" data-page="{{ $lastPage }}">
+	<div class="card-shadow mb-5 last-page" data-page="{{ $lastPage }}">
 		<div class="p-4">
 			<div class="d-flex">
 				<div class="d-flex mb-3">

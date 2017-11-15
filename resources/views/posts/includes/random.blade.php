@@ -56,20 +56,20 @@
 				@endlogin
 				<div class="bd-right mx-3 h-20"></div>
 				@login
-					@if ($randomPost->bookmarked())
-						<button class="fade-in-scale text-dark font-size-20" id="unbookmark-post" data-id="{{ $randomPost->id }}" data-bookmark-id="{{ $randomPost->getBookmarkIdAttribute() }}">
-							<i class="fa fa-bookmark"></i>
-						</button>
-					@else
-						<button class="fade-in-scale text-default text-default-hover font-size-20" id="bookmark-post" data-id="{{ $randomPost->id }}">
-							<i class="fa fa-bookmark-o"></i>
-						</button>
-					@endif
-				@else
-					<button class="fade-in-scale text-default text-default-hover font-size-20" data-toggle="modal" data-target="#modal-signin">
-						<i class="fa fa-bookmark-o"></i>
-					</button>
-				@endlogin
+                    @if ($randomPost->bookmarked())
+                        <button id="unbookmark" class="fade-in-scale font-size-20 text-dark post" data-id="{{ $randomPost->id }}" data-bookmark-id="{{ $randomPost->getBookmarkIdAttribute() }}">
+                            <i class="fa fa-bookmark"></i>
+                        </button>
+                    @else
+                        <button id="bookmark" class="fade-in-scale font-size-20 text-default text-default-hover post" data-id="{{ $randomPost->id }}">
+                            <i class="fa fa-bookmark-o"></i>
+                        </button>
+                    @endif
+                @else
+                    <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
+                        <i class="fa fa-bookmark-o"></i>
+                    </button>
+                @endlogin
 			</div>
 		</div>
 	</div>

@@ -20,20 +20,7 @@
 
 	@include('includes.modal')
 
-	<script src="assets/js/custom.js"></script>
-	<script>
-		$(document).ajaxStart(function () { Pace.restart(); });
-		$(function() {
-			$('.lazy').lazy();
-		});
-	</script>
-	<script>
-		$.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-	</script>
+	<script src="assets/js/custom.js" async></script>
 	@yield('script')
 </body>
 </html>
