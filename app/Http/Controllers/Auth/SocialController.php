@@ -20,16 +20,17 @@ class SocialController extends Controller
     /**
      * Obtain the user information from the provider.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\Response
      */
     public function handleProviderCallback($provider)
     {
         $socialite = \Socialite::driver($provider)->user();
         $social    = \App\Social::where('provider_id', $socialite->id)->first();
         $email     = User::where('email', $socialite->email)->first();
+        $username  = User::where('username', str_slug($socialite->name, ''))->first();
 
         if (!$social) {
-            if (!$email) {
+            if (!$email && !$username) {
                 if ($provider == 'github' || $provider == 'facebook') {
                     $file = file_get_contents($socialite->avatar);
                 } else {
@@ -73,7 +74,11 @@ class SocialController extends Controller
                 auth()->login($user, true);
                 return redirect()->intended('/');
             } else {
-                $user = User::find($email->id);
+                if (!empty($email)) {
+                    $user = User::find($email->id);
+                } else {
+                    $user = User::find($username->id);
+                }
 
                 switch ($provider) {
                     case 'facebook':
