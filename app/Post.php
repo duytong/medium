@@ -56,7 +56,7 @@ class Post extends Model
 
     public function createdAtUser()
     {
-        return date('M Y', strtotime($this->created_at));
+        return date('M Y', strtotime($this->user->created_at));
     }
 
     public function topic()

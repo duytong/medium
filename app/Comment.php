@@ -50,6 +50,11 @@ class Comment extends Model
         return $this->user->pathImage();
     }
 
+    public function createdAtUser()
+    {
+        return date('M Y', strtotime($this->user->created_at));
+    }
+
     public function post()
     {
     	return $this->belongsTo('App\Post', 'post_id');

@@ -17,17 +17,19 @@
             <div class="pt-2">{{ _substr($bookmark->bookmarkable->user->summary, 100) }}</div>
         @endif
     </div>
-    <div class="divider-popover my-2"></div>
-    <div class="py-2">
-        <div class="text-uppercase">Top posts</div>
-        <ol>
-            @foreach ($bookmark->bookmarkable->user->posts->slice(0, 3) as $topPosts)
-                <li>
-                    <a href="{{ $topPosts->path() }}" class="text-dark hover-underline" title="{{ $topPosts->title }}">{{ $topPosts->title }}</a>
-                </li>
-            @endforeach
-        </ol>
-    </div>
+    @if ($bookmark->bookmarkable->user->posts->count() > 0)
+        <div class="divider-popover my-2"></div>
+        <div class="py-2">
+            <div class="text-uppercase">Top posts</div>
+            <ol>
+                @foreach ($bookmark->bookmarkable->user->posts->slice(0, 3) as $topPosts)
+                    <li>
+                        <a href="{{ $topPosts->path() }}" class="text-dark hover-underline" title="{{ $topPosts->title }}">{{ $topPosts->title }}</a>
+                    </li>
+                @endforeach
+            </ol>
+        </div>
+    @endif
     <div class="divider-popover my-2"></div>
     <div class="d-flex justify-content-between align-items-center pt-2">
         @if ($bookmark->bookmarkable->user->follower()->count() > 0)

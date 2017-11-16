@@ -2,13 +2,16 @@
 	<div class="card-shadow mb-5 last-page" data-page="{{ $lastPage }}">
 		<div class="p-3">
 			<div class="d-flex">
-				<div class="d-flex mb-3">
+				<div class="d-flex mb-3 align-items-center popover-user">
 					<a href="{{ $comment->pathUser() }}">
-						<img data-src="{{ $comment->pathImageUser() }}" class="circle img-40 lazy">
+						<img data-src="{{ $comment->pathImageUser() }}" class="circle img-40 lazy popover-trigger">
 					</a>
 					<div class="d-flex flex-column justify-content-center pl-2">
-						<a href="{{ $comment->pathUser() }}" class="text-success">{{ $comment->user->name }}</a>
+						<a href="{{ $comment->pathUser() }}" class="text-success popover-trigger">{{ $comment->user->name }}</a>
 						<span class="font-size-12">{{ $comment->createdAt() }}</span>
+					</div>
+					<div id="popover-content" class="d-none">
+						@include('includes.popover_user_3')
 					</div>
 				</div>
 			</div>

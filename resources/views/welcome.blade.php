@@ -23,7 +23,7 @@
                 <h2 class="mb-3 font-size-20 text-dark font-weight-normal">Hear directly from the people who know it best. From tech to politics to creativity and more — whatever your interest, we’ve got you covered.</h2>
                 <div class="d-flex">
                     <button class="btn bg-success btn-shadow mr-2" data-toggle="modal" data-target="#modal-signin">Get started</button>
-                    <a href="javscript:;" class="btn btn-outline-dark btn-shadow-hover">Learn more</a>
+                    <a href="javscript:;" class="btn bg-dark btn-shadow">Learn more</a>
                 </div>
             </div>
         </div>
