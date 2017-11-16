@@ -14,7 +14,12 @@ class PostTagTableSeeder extends Seeder
         for ($i = 0; $i < 900; $i++) {
         	$post = \App\Post::inRandomOrder()->first();
         	$tagId = \App\Tag::inRandomOrder()->value('id');
-			$post->tags()->attach($tagId);
+
+            $countPostId = DB::table('post_tag')->where('post_id', $post->id)->count();
+
+            if ($countPostId < 6) {
+                $post->tags()->attach($tagId);
+            }
         }
     }
 }

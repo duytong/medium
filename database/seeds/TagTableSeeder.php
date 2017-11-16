@@ -14,6 +14,7 @@ class TagTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        // Max word: 182.
         for ($i = 0; $i < 182; $i++) {
         	$name = $faker->unique()->word;;
             $timestamps = Carbon\Carbon::now();
