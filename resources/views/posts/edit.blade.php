@@ -78,37 +78,38 @@
 @section('script')
     <script>
         // Search tags.
-        var data = $('#data').html();
-        var json = JSON.parse(data);
+        window.addEventListener('load', function () {
+            $(function () {
+                var data = $('#data').html();
+                var json = JSON.parse(data);
+                var urlSearchTags = window.location.origin + '/search-tags';
 
-        $(function () {
-            var urlSearchTags = window.location.origin + '/search-tags';
+                $('#tags').tokenInput(
+                    urlSearchTags,
+                    {
+                        theme: 'facebook',
+                        tokenLimit: 5,
+                        searchDelay: 500,
+                        allowFreeTagging: true,
+                        hintText: false,
+                        tokenValue: 'name',
+                        noResultsText: 'Cannot find tag available! You can create a new tag by pressing Tab.',
+                        resultsFormatter: function (item) {
+                            return '<li>' + item.name + '<span class="ml-1">(' + item.assigned_tag + ')</span>' + '</li>';
+                        },
+                        prePopulate: $.each(json, function() {
+                            [{ 'name': json.name }]
+                        })
+                    }
+                );
 
-            $('#tags').tokenInput(
-                urlSearchTags,
-                {
-                    theme: 'facebook',
-                    tokenLimit: 5,
-                    searchDelay: 500,
-                    allowFreeTagging: true,
-                    hintText: false,
-                    tokenValue: 'name',
-                    noResultsText: 'Cannot find tag available! You can create a new tag by pressing Tab.',
-                    resultsFormatter: function (item) {
-                        return '<li>' + item.name + '<span class="ml-5">(' + item.assigned_tag + ')</span>' + '</li>';
-                    },
-                    prePopulate: $.each(json, function() {
-                        [{ 'name': json.name }]
-                    })
-                }
-            );
-
-            $('#token-input-tags').attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
-            $('#token-input-tags').bind('change keyup', function () {
-                $(this).attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
-            });
-            $(document).bind('change', function () {
                 $('#token-input-tags').attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
+                $('#token-input-tags').bind('change keyup', function () {
+                    $(this).attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
+                });
+                $(document).bind('change', function () {
+                    $('#token-input-tags').attr('placeholder', 'Add or change tags (up to 5) so your post reaches more people.');
+                });
             });
         });
     </script>

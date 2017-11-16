@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
-use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 
 class PageController extends Controller
@@ -16,7 +13,7 @@ class PageController extends Controller
      */
     public function dashboard()
     {
-    	$users = User::orderBy('created_at', 'DESC')->get();
+    	$users = \App\User::orderBy('created_at', 'DESC')->get();
     	$categories = \App\Category::all();
     	$topics = \App\Topic::all();
     	$posts = \App\Post::orderBy('created_at', 'DESC')->get();

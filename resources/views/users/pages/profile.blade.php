@@ -68,11 +68,13 @@
 				</div>
 			</section>
 			<section class="my-5">
-				<div class="d-flex bd-bottom">
-					<div class="block-title pb-3 mr-4">
-						<a href="{{ $profile->path() }}" class="text-dark">Profile</a>
+				@if ($profile->posts->count() > 0)
+					<div class="d-flex bd-bottom">
+						<div class="block-title pb-3 mr-4">
+							<a href="{{ $profile->path() }}" class="text-dark">Profile</a>
+						</div>
 					</div>
-				</div>
+				@endif
 				<div class="mt-5">
 					@foreach ($profile->posts as $post)
 						<div class="d-flex mb-4">

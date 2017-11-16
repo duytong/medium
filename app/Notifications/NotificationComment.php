@@ -11,16 +11,17 @@ class NotificationComment extends Notification
 {
     use Queueable;
 
-    protected $comment;
+    protected $comment, $owner;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($comment)
+    public function __construct($comment, $owner)
     {
         $this->comment = $comment;
+        $this->owner = $owner;
     }
 
     /**
@@ -44,8 +45,8 @@ class NotificationComment extends Notification
     {
         return [
             'path' => $this->comment->post->path(),
-            'pathImage' => $this->comment->pathImageUser(),
-            'user' => $this->comment->user->name,
+            'pathImage' => $this->owner->pathImage(),
+            'name' => $this->owner->name,
             'content' => 'comment to your post.'
         ];
     }

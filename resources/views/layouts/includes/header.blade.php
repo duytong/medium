@@ -32,7 +32,7 @@
 							</a>
 							<div class="dropdown-menu card-shadow m-0 p-0 bd-none font-size-14 notifications-feed">
 								@notifications
-									<div class="py-2 px-4">
+									<div class="py-2 px-3">
 										<span class="text-black">Notifications</span>
 										<button class="float-right text-success hover-underline mark-all-as-read">Mark all as read</button>
 									</div>
@@ -43,7 +43,7 @@
 										@else
 											<div class="noti-item">
 										@endif
-												<a href="{!! $notification->data['path'] !!}" class="d-flex block py-2 px-4 text-dark notification" data-id="{{ $notification->id }}">
+												<a href="{!! $notification->data['path'] !!}" class="d-flex block py-2 px-3 text-dark notification" data-id="{{ $notification->id }}">
 													<img src="{!! $notification->data['pathImage'] !!}" class="circle img-40">
 													<div class="noti-info d-flex flex-column justify-content-center ml-3">
 														<div>
@@ -87,7 +87,7 @@
 								<a href="{{ route('posts.create') }}" class="dropdown-item py-2 px-4 bg-none text-black">New post</a>
 								<a href="{{ route('drafts') }}" class="dropdown-item py-2 px-4 bg-none text-black">Posts</a>
 								<a href="javascript:;" class="dropdown-item py-2 px-4 bg-none text-black">Stats</a>
-								<a href="{{ route('bookmark') }}" class="dropdown-item py-2 px-4 bg-none text-black">Bookmarks</a>
+								<a href="{{ route('bookmarks') }}" class="dropdown-item py-2 px-4 bg-none text-black">Bookmarks</a>
 								<div class="dropdown-divider"></div>
 								<a href="{{ auth()->user()->path() }}" class="dropdown-item py-2 px-4 bg-none text-black">Profile</a>
 								<a href="javascript:;" class="dropdown-item py-2 px-4 bg-none text-black">Settings</a>

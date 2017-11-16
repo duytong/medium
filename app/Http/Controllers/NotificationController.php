@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class NotificationController extends Controller
 {
+	/**
+	 * Mark as read notification.
+	 * 
+	 * @param  string $id
+	 * @return Illuminate\Http\Response
+	 */
 	public function markAsRead($id) {
 		$user = auth()->user();
 		$notification = $user->notifications()->where('id', $id)->first();
-		if ($notification)
-		{
-			$notification->update(['read_at' => \Carbon\Carbon::now()]);
-			return back();
-		}
+		$notification->update(['read_at' => \Carbon\Carbon::now()]);
 	}
 }

@@ -15,18 +15,21 @@ class AppServiceProvider extends ServiceProvider
     {
         \Schema::defaultStringLength(191);
         
+        // Check login.
         \Blade::if('login', function () {
             if (auth()->check()) {
                 return true;
             }
         });
 
+        // Count notifications.
         \Blade::if('notifications', function () {
             if (auth()->user()->notifications->count() > 0) {
                 return true;
             }
         });
 
+        // Count notifications unred.
         \Blade::if('unreadNotifications', function () {
             if (auth()->user()->unreadNotifications->count() > 0) {
                 return true;

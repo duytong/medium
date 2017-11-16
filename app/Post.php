@@ -73,9 +73,4 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
-
-    public function addComment($comment)
-    {
-    	$this->comments()->create($comment);
-    }  
 }

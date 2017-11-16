@@ -1,20 +1,22 @@
-<div class="d-flex flex-column h-260 card-shadow bg-white">
-	<a href="{{ $randomPost->path() }}" title="{{ $randomPost->title }}">
-		<div class="h-100 lazy bg-position-center bd-radius-2" data-src="{{ $randomPost->pathImage() }}"></div>
+<div class="d-flex flex-column h-300 card-shadow">
+	<a href="{{ $randomPost->path() }}" title="{{ $randomPost->title }}" class="m-2">
+		@if (!file_exists($randomPost->pathImage()) || $randomPost->image == null)
+            <div class="h-100 lazy img-error" data-src="{{ $randomPost->pathImageError() }}"></div>
+        @else
+            <div class="h-100 lazy bg-position-center" data-src="{{ $randomPost->pathImage() }}"></div>
+        @endif
 	</a>
-	<div class="d-flex flex-column justify-content-between h-160 p-3">
+	<div class="d-flex flex-column justify-content-between h-200 p-3">
 		<a href="{{ $randomPost->path() }}" class="mb-3">
-			<div class="font-size-20 font-weight-bold text-dark line-height-1-2">{{ _substr($randomPost->title, 50) }}</div>
+			<h3 class="font-size-20 font-weight-bold text-dark">{{ _substr($randomPost->title, 50) }}</h3>
 		</a>
 		<div class="d-flex justify-content-between align-items-center">
-			<div class="d-flex popover-user">
+			<div class="d-flex align-items-center popover-user">
 				<a href="{{ $randomPost->user->path() }}">
 					<img data-src="{{ $randomPost->user->pathImage() }}" class="lazy circle img-40 popover-trigger" alt="{{ $randomPost->user->name }}">
 				</a>
-				<div class="d-flex flex-column justify-content-center pl-10">
-					<a href="{{ $randomPost->user->path() }}" class="text-dark popover-trigger">
-						{{ $randomPost->user->name }}
-					</a>
+				<div class="d-flex flex-column justify-content-center pl-2">
+					<a href="{{ $randomPost->user->path() }}" class="text-dark popover-trigger">{{ $randomPost->user->name }}</a>
 					<span class="font-size-12">{{ $randomPost->createdAt() }}</span>
 				</div>
 				<div id="popover-content" class="d-none">

@@ -272,6 +272,9 @@
         @endif
     </div>
 @endsection
+@section('footer')
+    @include('layouts.includes.footer')
+@endsection
 @section('script')
 	<script>
         // Triggered owlCarousel

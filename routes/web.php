@@ -11,15 +11,15 @@
 |
 */
 
-// Homepage
+Auth::routes();
+
+// Home
 Route::get('/', 'PageController@welcome')->name('welcome');
 
 // Connect
 Route::get('signin/{provider}', 'Auth\SocialController@redirectToProvider');
 Route::get('signin/{provider}/callback', 'Auth\SocialController@handleProviderCallback');
 Route::get('signout', 'SignoutController@signout')->name('signout');
-
-Route::view('login', 'admin.pages.login');
 
 // Area administrator
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
@@ -66,19 +66,19 @@ Route::group(['prefix' => 'me'], function () {
 });
 
 // Bookmarks
-Route::get('browse/bookmarks', 'BookmarkController@index')->name('bookmark');
+Route::get('browse/bookmarks', 'BookmarkController@index')->name('bookmarks');
 Route::post('bookmark/{bookmark}/{id}', 'BookmarkController@store');
 Route::post('unbookmark/{id}', 'BookmarkController@destroy');
 
 // Likes
-Route::post('like/{like}/{id}', 'LikeController@store');
-Route::post('unlike/{id}', 'LikeController@destroy');
+Route::post('like/{like}/{id}', 'LikeController@like');
+Route::post('unlike/{id}', 'LikeController@unlike');
 
-// Comment
-Route::post('post/comment', 'CommentController@store');
+// Comments
+Route::post('post/comment', 'CommentController@comment');
 Route::get('{post}/comments', 'CommentController@data');
 
-// Followable
+// Followables
 Route::post('attach/{object}/{id}', 'FollowableController@attach');
 Route::post('detach/{object}/{id}', 'FollowableController@detach');
 
@@ -97,33 +97,7 @@ Route::get('search-tags', 'TagController@search');
 Route::get('search', 'SearchController@search')->name('search');
 Route::get('autocomplete', 'SearchController@autocomplete');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Pages
 Route::get('popular', 'PageController@postsPopular')->name('posts.popular');
 Route::get('recommendation', 'PageController@postsRecommendation')->name('posts.recommendation');
 Route::get('followers', 'PageController@postsFollowers')->name('posts.followers');
-
-
-
-
-
-
-
-
-Auth::routes();
-

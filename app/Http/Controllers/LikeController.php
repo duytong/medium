@@ -7,13 +7,13 @@ use App\User;
 class LikeController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Like.
      *
      * @param  string  $like
      * @param  string  $id
      * @return \Illuminate\Http\Response
      */
-	public function store($like, $id)
+	public function like($like, $id)
     {
         switch ($like) {
             case 'post':
@@ -39,7 +39,7 @@ class LikeController extends Controller
                 $owner = auth()->user();
 
                 if ($owner->id != $id) {
-                $user->notificationtify(new \App\Notifications\LikeComment($comment, $owner));
+                    $user->notify(new \App\Notifications\LikeComment($comment, $owner));
                 }
 
                 return $comment->like()->id;
@@ -48,12 +48,12 @@ class LikeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Unlike.
      *
      * @param  string  $id
      * @return void
      */
-    public function destroy($id)
+    public function unlike($id)
     {
     	\App\Like::find($id)->delete();
     }

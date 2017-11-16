@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Topic;
-use Illuminate\Http\Request;
-use App\Http\Requests\TopicRequest;
+use App\Http\Requests\\Http\Requests\TopicRequest;
 use App\Http\Controllers\Controller;
 
 class TopicController extends Controller
@@ -23,7 +22,7 @@ class TopicController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -33,7 +32,7 @@ class TopicController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -43,10 +42,10 @@ class TopicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  TopicRequest  $request
+     * @param  \Http\Requests\TopicRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(TopicRequest $request)
+    public function store(\Http\Requests\TopicRequest $request)
     {   
         $topic = new Topic;
 
@@ -71,7 +70,7 @@ class TopicController extends Controller
      * Display the specified resource.
      *
      * @param  string  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -82,11 +81,11 @@ class TopicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  TopicRequest  $request
+     * @param  \Http\Requests\TopicRequest  $request
      * @param  string  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(TopicRequest $request, $id)
+    public function update(\Http\Requests\TopicRequest $request, $id)
     {
         $topic = Topic::find($id);
 

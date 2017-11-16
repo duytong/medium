@@ -11,7 +11,7 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -21,7 +21,7 @@ class TagController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -31,7 +31,7 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  TopicRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
@@ -48,7 +48,7 @@ class TagController extends Controller
      * Display the specified resource.
      *
      * @param  string  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -59,7 +59,7 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  TopicRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  string  $id
      * @return \Illuminate\Http\RedirectResponse
      */

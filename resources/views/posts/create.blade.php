@@ -74,7 +74,7 @@
                         tokenValue: 'name',
                         noResultsText: 'Cannot find tag available! You can create a new tag by pressing Tab.',
                         resultsFormatter: function (item) {
-                            return '<li>' + item.name + '<span class="ml-5">(' + item.assigned_tag + ')</span>' + '</li>';
+                            return '<li>' + item.name + '<span class="ml-1">(' + item.assigned_tag + ')</span>' + '</li>';
                         }
                     }
                 );

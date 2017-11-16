@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
-use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 
@@ -12,7 +11,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -23,7 +22,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -33,7 +32,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  TopicRequest  $request
+     * @param  \Http\Requests\UserRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserRequest $request)
@@ -62,7 +61,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  string  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -73,7 +72,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  TopicRequest  $request
+     * @param  \Http\Requests\UserRequest  $request
      * @param  string  $id
      * @return \Illuminate\Http\RedirectResponse
      */

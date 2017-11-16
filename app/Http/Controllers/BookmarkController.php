@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class BookmarkController extends Controller
 {
     /**
-     * Display a listing of bookmarks this user.
+     * Display a listing of bookmarks by a particular user.
      * 
-     * @param  Request  $request
-     * @return \Illuminate\View\View
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
 	public function index(Request $request)
 	{

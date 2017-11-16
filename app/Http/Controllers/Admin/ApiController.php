@@ -37,8 +37,8 @@ class ApiController extends Controller
 			            		<form action="' . route('categories.destroy', $category->id) . '" method="POST" class="form-delete">
 		            				<input name="_method" type="hidden" value="DELETE">
 		                            <input type="hidden" name="_token" value="' . csrf_token() . '">
-		                            <span class="dropdown-item">
-                                        <button><i class="la la-trash"></i> Delete</button>
+		                            <span class="dropdown-item bg-none">
+                                        <button class="bg-none"><i class="la la-trash"></i> Delete</button>
                                     </span>
 		            			</form>
 			            	</div>
@@ -84,8 +84,8 @@ class ApiController extends Controller
 			            		<form action="' . route('topics.destroy', $topic->id) . '" method="POST" class="form-delete">
                                     <input name="_method" type="hidden" value="DELETE">
                                     <input type="hidden" name="_token" value="' . csrf_token() . '">
-                                    <span class="dropdown-item">
-                                        <button><i class="la la-trash"></i> Delete</button>
+                                    <span class="dropdown-item bg-none">
+                                        <button class="bg-none"><i class="la la-trash"></i> Delete</button>
                                     </span>
                                 </form>
 			            	</div>
@@ -133,8 +133,8 @@ class ApiController extends Controller
 			            		<form action="' . route('posts.destroy', $post->id) . '" method="POST" class="form-delete">
                                     <input name="_method" type="hidden" value="DELETE">
                                     <input type="hidden" name="_token" value="' . csrf_token() . '">
-                                    <span class="dropdown-item">
-                                        <button><i class="la la-trash"></i> Delete</button>
+                                    <span class="dropdown-item bg-none">
+                                        <button class="bg-none"><i class="la la-trash"></i> Delete</button>
                                     </span>
                                 </form>
 			            	</div>
@@ -176,8 +176,8 @@ class ApiController extends Controller
                                 <form action="' . route('tags.destroy', $tag->id) . '" method="POST" class="form-delete">
                                     <input name="_method" type="hidden" value="DELETE">
                                     <input type="hidden" name="_token" value="' . csrf_token() . '">
-                                    <span class="dropdown-item">
-                                        <button><i class="la la-trash"></i> Delete</button>
+                                    <span class="dropdown-item bg-none">
+                                        <button class="bg-none"><i class="la la-trash"></i> Delete</button>
                                     </span>
                                 </form>
                             </div>
@@ -232,8 +232,8 @@ class ApiController extends Controller
                                 <form action="' . route('users.destroy', $user->id) . '" method="POST" class="form-delete">
                                     <input name="_method" type="hidden" value="DELETE">
                                     <input type="hidden" name="_token" value="' . csrf_token() . '">
-                                    <span class="dropdown-item">
-                                        <button><i class="la la-trash"></i> Delete</button>
+                                    <span class="dropdown-item bg-none">
+                                        <button class="bg-none"><i class="la la-trash"></i> Delete</button>
                                     </span>
                                 </form>
                             </div>

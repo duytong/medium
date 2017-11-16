@@ -143,6 +143,9 @@
         @endforeach
     </section>
 @endsection
+@section('footer')
+    @include('layouts.includes.footer')
+@endsection
 @section('script')
     <script>
         // Fixed navigation

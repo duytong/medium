@@ -1,6 +1,6 @@
 @foreach ($comments as $comment)
 	<div class="card-shadow mb-5 last-page" data-page="{{ $lastPage }}">
-		<div class="p-4">
+		<div class="p-3">
 			<div class="d-flex">
 				<div class="d-flex mb-3">
 					<a href="{{ $comment->pathUser() }}">
@@ -12,7 +12,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="mb-3">{{ $comment->body }}</div>
+			<div class="mb-3 font-serif font-size-18 text-dark">{{ $comment->body }}</div>
 			<div class="d-flex justify-content-between">
 				<div class="d-flex align-items-center like-action">
 					@login

@@ -32,7 +32,7 @@
 				<div class="text-dark mt-5">
 					<h1 class="font-weight-bold line-height-1">{{ $post->title }}</h1>
 					@if (!file_exists($post->pathImage()))
-						<img class="mt-5 lazy w-full" data-src="{{ $post->pathImageError() }}">
+						<img class="mt-5 lazy w-full img-error" data-src="{{ $post->pathImageError() }}">
 					@elseif ($post->image == null)
 					@else
 						<img class="mt-5 lazy w-full" data-src="{{ $post->pathImage() }}">
@@ -42,7 +42,7 @@
 				<div class="mt-3">
 					<div class="tag">
 						@foreach ($post->tags as $tag)
-							<a href="{{ route('tag.show', $tag->slug) }}" class="btn btn-shadow mr-2 bd-radius-2 text-default text-default-hover">{{ $tag->name }}</a>
+							<a href="{{ route('tag.show', $tag->slug) }}" class="btn btn-shadow mr-2 text-default text-default-hover">{{ $tag->name }}</a>
 						@endforeach
 					</div>
 					<div class="my-5">
@@ -105,15 +105,13 @@
 						</a>
 						<div class="d-flex flex-column justify-content-center pl-3 w-full">
 							<div class="d-flex justify-content-between align-items-center">
-								<a href="{{ $post->user->path() }}" class="text-dark font-weight-bold font-size-18" title="{{ $post->user->name }}">
-									{{ $post->user->name }}
-								</a>
+								<a href="{{ $post->user->path() }}" class="text-dark font-weight-bold font-size-18" title="{{ $post->user->name }}">{{ $post->user->name }}</a>
 								@login
 									@if (auth()->id() != $post->user->id)
 										@if (auth()->user()->isFollowing($post->user)) 
 											<button id="detach" class="btn btn-shadow bg-success" data-id={{ $post->user->id }}>Following</button>
 										@else
-											<button id="attac" class="btn btn-success" data-id={{ $post->user->id }}>Follow</button>
+											<button id="attach" class="btn btn-success" data-id={{ $post->user->id }}>Follow</button>
 										@endif
 									@endif
 								@else
@@ -138,7 +136,7 @@
 			<div class="col-lg-8
 				@login
 				@else
-					mb-5
+					mb-70
 				@endlogin
 			">
 				<div class="text-black font-weight-bold mb-3">Comments</div>
@@ -168,7 +166,7 @@
 				</div>
 				@foreach ($comments as $key => $comment)
 					@if ($key == 0 && $comment->count() > 10)
-						<button class="show-comments card-shadow card-shadow-hover text-success p-4 w-full mb-5">Show all comments</button>
+						<button class="show-comments card-shadow card-shadow-hover text-success p-4 w-full mb-5" data-id="{{ $post->id }}">Show all comments</button>
 					@endif
 				@endforeach
 				<div class="d-flex justify-content-center">

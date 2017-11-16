@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 
@@ -12,7 +11,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -22,7 +21,7 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -32,7 +31,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  TopicRequest  $request
+     * @param  \Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CategoryRequest $request)
@@ -45,7 +44,7 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param  string  $id
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -56,7 +55,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  TopicRequest  $request
+     * @param  \Http\Requests\CategoryRequest  $request
      * @param  string  $id
      * @return \Illuminate\Http\RedirectResponse
      */

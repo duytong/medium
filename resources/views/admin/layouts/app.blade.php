@@ -23,6 +23,6 @@
         <script src="assets/admin/js/main.min.js"></script>
         <script src="assets/admin/js/select2.min.js"></script>
         @yield('script')
-        @include('admin.pages.modal')
+        @include('admin.includes.confirm')
     </body>
 </html>

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\Comment;
 use Illuminate\Http\Request;
-use App\Notifications\NotificationComment;
 
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Load more data via click event using ajax.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  string  $id
@@ -19,9 +16,10 @@ class CommentController extends Controller
     public function data(Request $request, $id)
     {
         if ($request->ajax()) {
-            $post = Post::find($id);
+            $post = \App\Post::find($id);
             $comments = $post->comments()->orderBy('created_at', 'DESC')->paginate(10);
             $lastPage = $comments->lastPage();
+
             return view('posts.includes.comments', compact('comments', 'lastPage'));
         }
     }
@@ -29,23 +27,27 @@ class CommentController extends Controller
     /**
      * Create a comment.
      *
-     * @param  Request  $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function comment(Request $request)
     {
-        $comment = Comment::create([
+        $comment = \App\Comment::create([
             'user_id' => auth()->id(),
             'post_id' => request('post_id'),
             'body' => request('body')
         ]);
 
-        // Send notification
-        $username = $comment->post->user->username;
-        $user = \App\User::where('username', $username)->first();
-        $user->notify(new NotificationComment($comment));
+        // Send notification.
+        $id = $comment->post->user->id;
+        $user = \App\User::where('id', $id)->first();
+        $owner = auth()->user();
 
-        // Return data ajax
+        if ($owner->id != $id) {
+            $user->notify(new \App\Notifications\NotificationComment($comment, $owner));
+        }
+
+        // Return data ajax.
         return response()->json([
             'id' => '.' . $comment->id . '.',
             'path' => $comment->path(),

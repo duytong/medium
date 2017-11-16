@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Topic;
-use App\Notifications\Follow;
 
 class FollowableController extends Controller
 {
 	/**
-     * Attach the given a row in followables table.
+     * Attach.
      *
      * @param  string  $object
      * @param  string  $id
@@ -28,13 +27,13 @@ class FollowableController extends Controller
                 $owner = auth()->user();
 
                 // Send notification.
-                $user->notify(new Follow($owner));
+                $user->notify(new \App\Notifications\Follow($owner));
                 break;
         }
 	}
 
 	/**
-     * Detach the given a row in followables table.
+     * Detach.
      *
      * @param  string  $object
      * @param  string  $id
@@ -42,9 +41,6 @@ class FollowableController extends Controller
      */
 	public function detach($object, $id)
 	{
-        $user = User::find(auth()->id());
-        $user->notifications()->where('notifiable_id', $id)->delete();
-
 	  	switch ($object) {
             case 'topic':
                 $topic = Topic::find($id);
