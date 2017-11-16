@@ -1,4 +1,4 @@
-<div class="d-flex flex-column h-300 card-shadow">
+<div class="d-flex flex-column h-300 card-shadow mb-md-30">
 	<a href="{{ $randomPost->path() }}" title="{{ $randomPost->title }}" class="m-2">
 		@if (!file_exists($randomPost->pathImage()) || $randomPost->image == null)
             <div class="h-100 lazy img-error" data-src="{{ $randomPost->pathImageError() }}"></div>
