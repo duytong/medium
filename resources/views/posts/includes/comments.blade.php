@@ -4,7 +4,7 @@
 			<div class="d-flex">
 				<div class="d-flex mb-3 align-items-center popover-user">
 					<a href="{{ $comment->pathUser() }}">
-						<img data-src="{{ $comment->pathImageUser() }}" class="circle img-40 lazy popover-trigger">
+						<img data-src="{{ $comment->userImagePath() }}" class="circle img-40 lazy popover-trigger">
 					</a>
 					<div class="d-flex flex-column justify-content-center pl-2">
 						<a href="{{ $comment->pathUser() }}" class="text-success popover-trigger">{{ $comment->user->name }}</a>

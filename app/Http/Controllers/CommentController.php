@@ -53,7 +53,7 @@ class CommentController extends Controller
             'path' => $comment->path(),
             'user_name' => $comment->user->name,
             'user_path' => $comment->user->path(),
-            'user_path_image' => $comment->pathImageUser(),
+            'user_image_path' => $comment->userImagePath(),
             'body' => $comment->body,
             'created_at' => $comment->createdAt()
         ]);

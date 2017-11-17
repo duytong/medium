@@ -616,7 +616,7 @@ $(function () {
 									+ '<div class="d-flex">'
 										+ '<div class="d-flex mb-3">'
 											+ '<a class="' + response.user_path + '">'
-												+ '<img src="' + response.user_path_image + '" class="circle img-40">'
+												+ '<img src="' + response.user_image_path + '" class="circle img-40">'
 											+ '</a>'
 											+ '<div class="d-flex flex-column justify-content-center pl-2">'
 												+ '<a href="' + response.user_path + '" class="text-success">' + response.user_name + '</a>'

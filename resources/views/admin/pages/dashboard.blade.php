@@ -89,7 +89,7 @@
                                     <div class="m-widget19__content">
                                         <div class="m-widget19__header">
                                             <div class="m-widget19__user-img">
-                                                <img class="m-widget19__img" src="{{ $post->pathImageUser() }}">
+                                                <img class="m-widget19__img" src="{{ $post->userImagePath() }}">
                                             </div>
                                             <div class="m-widget19__info">
                                                 <span class="m-widget19__username">{{ $post->user->name }}</span>
@@ -163,7 +163,7 @@
                                     <div class="m-widget3__item">
                                         <div class="m-widget3__header mb-2">
                                             <div class="m-widget3__user-img mb-0">
-                                                <img class="m-widget3__img" src="{{ $comment->pathImageUser() }}">
+                                                <img class="m-widget3__img" src="{{ $comment->userImagePath() }}">
                                             </div>
                                             <div class="m-widget3__info">
                                                 <span class="m-widget3__username">{{ $comment->user->name }}</span>

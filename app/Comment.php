@@ -45,7 +45,7 @@ class Comment extends Model
         return $this->user->path();
     }
 
-    public function pathImageUser()
+    public function userImagePath()
     {
         return $this->user->pathImage();
     }

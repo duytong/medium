@@ -2,7 +2,7 @@
     <div class="pb-2">
         <div class="d-flex">
             <a href="{{ $randomPost->pathUser() }}">
-                <img data-src="{{ $randomPost->pathImageUser() }}" class="circle img-50 lazy" alt="{{ $randomPost->user->name }}" title="{{ $randomPost->user->name }}">
+                <img data-src="{{ $randomPost->userImagePath() }}" class="circle img-50 lazy" alt="{{ $randomPost->user->name }}" title="{{ $randomPost->user->name }}">
             </a>
             <div class="d-flex flex-column justify-content-center pl-3">
                 <h4 class="font-size-16 font-weight-bold">

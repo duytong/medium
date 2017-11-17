@@ -15,14 +15,18 @@ class BookmarkController extends Controller
      */
 	public function index(Request $request)
 	{
-		$bookmarks = Bookmark::where('user_id', auth()->id())->orderBy('created_at', 'DESC')->paginate(5);
-        $lastPage = $bookmarks->lastPage();
+        if (auth()->check()) {
+    		$bookmarks = Bookmark::where('user_id', auth()->id())->orderBy('created_at', 'DESC')->paginate(5);
+            $lastPage = $bookmarks->lastPage();
 
-        if ($request->ajax()) {
-            return view('users.bookmarks.data', compact('bookmarks', 'lastPage'));
+            if ($request->ajax()) {
+                return view('users.bookmarks.data', compact('bookmarks', 'lastPage'));
+            }
+
+    		return view('users.bookmarks.index', compact('bookmarks', 'lastPage'));
         }
 
-		return view('users.bookmarks.index', compact('bookmarks', 'lastPage'));
+        return view('errors.404');
 	}
 
     /**

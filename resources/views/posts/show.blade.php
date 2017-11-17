@@ -164,11 +164,9 @@
 				<div id="data-comments">
 					@include('posts.includes.comments')
 				</div>
-				@foreach ($comments as $key => $comment)
-					@if ($key == 0 && $comment->count() > 10)
-						<button class="show-comments card-shadow card-shadow-hover text-success p-4 w-full mb-5" data-id="{{ $post->id }}">Show all comments</button>
-					@endif
-				@endforeach
+				@if ($lastPage > 1)
+					<button class="show-comments card-shadow card-shadow-hover text-success p-4 w-full mb-5" data-id="{{ $post->id }}">Show all comments</button>
+				@endif
 				<div class="d-flex justify-content-center">
 					<div class="spinner mb-5" style="display: none"></div>
 				</div>
@@ -182,7 +180,7 @@
 				<div class="row justify-content-center">
 					<div class="col-lg-8 d-flex justify-content-between align-items-center">
 						<div class="d-flex align-items-center">
-							<img data-src="{{ $post->pathImageUser() }}" class="img-40 circle lazy">
+							<img data-src="{{ $post->userImagePath() }}" class="img-40 circle lazy">
 							<div class="pl-3 font-size-16 text-dark">Never miss a post from <span class="font-weight-bold">{{ $post->user->name }}</span>, when you sign up for Medium.</div>
 						</div>
 						<div>

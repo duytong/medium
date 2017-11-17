@@ -2,7 +2,7 @@
     <div class="pb-2">
         <div class="d-flex">
             <a href="{{ $comment->pathUser() }}">
-                <img data-src="{{ $comment->pathImageUser() }}" class="circle img-50 lazy" alt="{{ $comment->user->name }}" title="{{ $comment->user->name }}">
+                <img data-src="{{ $comment->userImagePath() }}" class="circle img-50 lazy" alt="{{ $comment->user->name }}" title="{{ $comment->user->name }}">
             </a>
             <div class="d-flex flex-column justify-content-center pl-3">
                 <h4 class="font-size-16 font-weight-bold">

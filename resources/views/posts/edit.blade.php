@@ -7,7 +7,7 @@
                 <div class="d-flex flex-column">
                     <div class="d-flex">
                         <a href="{{ $post->pathUser() }}">
-                            <img data-src="{{ $post->pathImageUser() }}" class="circle img-40 mr-2 lazy" title="{{ $post->user->name }}">
+                            <img data-src="{{ $post->userImagePath() }}" class="circle img-40 mr-2 lazy" title="{{ $post->user->name }}">
                         </a>
                         <div class="d-flex flex-column justify-content-center">
                             <a href="{{ $post->pathUser() }}" class="text-success" title="{{ $post->user->name }}">

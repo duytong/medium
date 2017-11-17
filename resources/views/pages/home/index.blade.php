@@ -36,7 +36,7 @@
                                     <div class="d-flex align-items-center popover-user">
                                         <div class="mr-2">
                                             <a href="{{ $post->pathUser() }}">
-                                                <img data-src="{{ $post->pathImageUser() }}" class="img-40 circle popover-trigger lazy">
+                                                <img data-src="{{ $post->userImagePath() }}" class="img-40 circle popover-trigger lazy">
                                             </a>
                                         </div>
                                         <div class="d-flex flex-column font-size-12">
@@ -98,7 +98,7 @@
                                         <div class="d-flex align-items-center popover-user">
                                             <div class="mr-2">
                                                 <a href="{{ $post->pathUser() }}">
-                                                    <img data-src="{{ $post->pathImageUser() }}" class="img-40 circle popover-trigger lazy">
+                                                    <img data-src="{{ $post->userImagePath() }}" class="img-40 circle popover-trigger lazy">
                                                 </a>
                                             </div>
                                             <div class="d-flex flex-column font-size-12">
@@ -194,7 +194,7 @@
                                     <div class="d-flex align-items-center popover-user">
                                         <div class="mr-2">
                                             <a href="{{ $post->pathUser() }}">
-                                                <img data-src="{{ $post->pathImageUser() }}" class="img-40 circle popover-trigger lazy">
+                                                <img data-src="{{ $post->userImagePath() }}" class="img-40 circle popover-trigger lazy">
                                             </a>
                                         </div>
                                         <div class="d-flex flex-column font-size-12">
