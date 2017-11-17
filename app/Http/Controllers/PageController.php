@@ -17,7 +17,7 @@ class PageController extends Controller
     public function welcome(Request $request)
     {
         $topics = Topic::all();
-    	$postsPopular = Post::orderBy('view', 'DESC')->take(4)->get();
+    	$postsPopular = Post::where('status', 1)->orderBy('view', 'DESC')->take(4)->get();
 
         if (auth()->check()) {
             // Get all of the users followed by a particular user.
@@ -28,7 +28,7 @@ class PageController extends Controller
             }
 
             if (!empty($userId)) {
-                $postsFollowers = Post::whereIn('user_id', $userId)->orderBy('created_at', 'DESC')->take(4)->get();
+                $postsFollowers = Post::whereIn('user_id', $userId)->where('status', 1)->orderBy('created_at', 'DESC')->take(4)->get();
             }
 
             // Get all of the topics subscribed by a particular user.
@@ -55,7 +55,7 @@ class PageController extends Controller
                 $exploreTopics = Topic::take(3)->get();
             }
             
-            $postsRecommendation = Post::inRandomOrder()->take(4)->get();
+            $postsRecommendation = Post::where('status', 1)->inRandomOrder()->take(4)->get();
 
             return view('pages.home.index', compact('postsPopular', 'postsFollowers', 'subscribedTopics', 'paginationTopics', 'lastPage', 'exploreTopics', 'postsRecommendation'));
         }
@@ -71,7 +71,7 @@ class PageController extends Controller
      */
     public function postsPopular(Request $request)
     {
-    	$posts = Post::orderBy('view', 'DESC')->paginate(10);
+    	$posts = Post::where('status', 1)->orderBy('view', 'DESC')->paginate(10);
         $lastPage = $posts->lastPage();
 
         if ($request->ajax()) {
@@ -97,7 +97,7 @@ class PageController extends Controller
                 $userId[] = $follower->id;
             }
 
-            $posts = Post::whereIn('user_id', $userId)->orderBy('created_at', 'DESC')->paginate(10);
+            $posts = Post::whereIn('user_id', $userId)->where('status', 1)->orderBy('created_at', 'DESC')->paginate(10);
             $lastPage = $posts->lastPage();
 
             if ($request->ajax()) {
@@ -118,7 +118,7 @@ class PageController extends Controller
      */
     public function postsRecommendation(Request $request)
     {
-        $posts = Post::inRandomOrder()->paginate(10);
+        $posts = Post::where('status', 1)->inRandomOrder()->paginate(10);
         $lastPage = $posts->lastPage();
 
         if ($request->ajax()) {

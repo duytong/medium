@@ -32,9 +32,15 @@
                             @include('includes.popover_user')
                         </div>
                     </div>
-                    <button class="fade-in-scale font-size-20 text-default text-default-hover" data-toggle="modal" data-target="#modal-signin">
-                        <i class="fa fa-bookmark-o"></i>
-                    </button>
+                    @if ($post->bookmarked())
+                        <button id="unbookmark" class="fade-in-scale font-size-20 text-dark post" data-id="{{ $post->id }}" data-bookmark-id="{{ $post->getBookmarkIdAttribute() }}">
+                            <i class="fa fa-bookmark"></i>
+                        </button>
+                    @else
+                        <button id="bookmark" class="fade-in-scale font-size-20 text-default text-default-hover post" data-id="{{ $post->id }}">
+                            <i class="fa fa-bookmark-o"></i>
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>

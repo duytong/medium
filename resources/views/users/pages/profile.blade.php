@@ -45,21 +45,21 @@
 							mt-3
 						@endif
 					">
-						@foreach ($profile->socials->sortBy('provider') as $social)
+						@foreach ($profile->socials as $social)
 							@switch ($social->provider)
 								@case ('twitter')
 									<a href="{{ $social->provider_url }}" class="text-default text-default-hover font-size-20">
 										<i class="fa fa-twitter"></i>
 									</a>
 								@break
+								@case ('facebook')
+									<a href="{{ $social->provider_url }}" class="text-default text-default-hover font-size-20 mx-2">
+										<i class="fa fa-facebook"></i>
+									</a>
+								@break
 								@case ('github')
 									<a href="{{ $social->provider_url }}" class="text-default text-default-hover font-size-20">
 										<i class="fa fa-github"></i>
-									</a>
-								@break
-								@default
-									<a href="{{ $social->provider_url }}" class="text-default text-default-hover font-size-20 mx-2">
-										<i class="fa fa-facebook"></i>
 									</a>
 								@break
 							@endswitch
