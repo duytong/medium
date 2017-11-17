@@ -5,17 +5,17 @@
         <title>Signin</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="assets/admin/css/style.min.css">
-        <link rel="shortcut icon" href="assets/admin/images/favicon.ico">
+        <link rel="stylesheet" href="assets/administrator/css/style.min.css">
+        <link rel="shortcut icon" href="assets/administrator/images/favicon.ico">
     </head>
     <body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
         <div class="m-grid m-grid--hor m-grid--root m-page">
-            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--singin m-login--2 m-login-2--skin-1" id="m_login" style="background-image: url(assets/admin/images/bg_login.jpg);">
+            <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--singin m-login--2 m-login-2--skin-1" id="m_login" style="background-image: url(assets/administrator/images/bg_login.jpg);">
                 <div class="m-grid__item m-grid__item--fluid m-login__wrapper">
                     <div class="m-login__container">
                         <div class="m-login__logo">
                             <a href="{{ route('welcome') }}">
-                                <img src="assets/admin/images/logo.png">
+                                <img src="assets/administrator/images/logo.png">
                             </a>
                         </div>
                         <div class="m-login__signin">

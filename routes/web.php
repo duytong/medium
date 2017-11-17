@@ -51,22 +51,22 @@ Route::get('@{username}/users/followers', 'ProfileController@followers')->name('
 /**
  * Administrator area
  */
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-	Route::get('/', 'Admin\PageController@dashboard')->name('dashboard');
-	Route::view('posts', 'admin.posts.index')->name('posts.index');
+Route::group(['prefix' => 'administrator', 'middleware' => 'administrator'], function () {
+	Route::get('/', 'Administrator\PageController@dashboard')->name('dashboard');
+	Route::view('posts', 'administrator.posts.index')->name('posts.index');
 
 	// RESTful resource controllers
-	Route::resource('users', 'Admin\UserController', ['except' => ['show']]);
-	Route::resource('categories', 'Admin\CategoryController', ['except' => ['show']]);
-	Route::resource('topics', 'Admin\TopicController', ['except' => ['show']]);
-	Route::resource('tags', 'Admin\TagController', ['except' => ['show']]);
+	Route::resource('users', 'Administrator\UserController', ['except' => ['show']]);
+	Route::resource('categories', 'Administrator\CategoryController', ['except' => ['show']]);
+	Route::resource('topics', 'Administrator\TopicController', ['except' => ['show']]);
+	Route::resource('tags', 'Administrator\TagController', ['except' => ['show']]);
 	
 	// API controllers
-	Route::get('api/categories', 'Admin\ApiController@getCategoriesData')->name('categories.data');
-	Route::get('api/topics', 'Admin\ApiController@getTopicsData')->name('topics.data');
-	Route::get('api/posts', 'Admin\ApiController@getPostsData')->name('posts.data');
-	Route::get('api/tags', 'Admin\ApiController@getTagsData')->name('tags.data');
-	Route::get('api/users', 'Admin\ApiController@getUsersData')->name('users.data');
+	Route::get('api/categories', 'Administrator\ApiController@getCategoriesData')->name('categories.data');
+	Route::get('api/topics', 'Administrator\ApiController@getTopicsData')->name('topics.data');
+	Route::get('api/posts', 'Administrator\ApiController@getPostsData')->name('posts.data');
+	Route::get('api/tags', 'Administrator\ApiController@getTagsData')->name('tags.data');
+	Route::get('api/users', 'Administrator\ApiController@getUsersData')->name('users.data');
 });
 
 /**
