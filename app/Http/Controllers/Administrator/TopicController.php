@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Topic;
-use App\Http\Requests\\Http\Requests\TopicRequest;
+use App\Http\Requests\TopicRequest;
 use App\Http\Controllers\Controller;
 
 class TopicController extends Controller
@@ -45,7 +45,7 @@ class TopicController extends Controller
      * @param  \Http\Requests\TopicRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(\Http\Requests\TopicRequest $request)
+    public function store(TopicRequest $request)
     {   
         $topic = new Topic;
 
@@ -85,7 +85,7 @@ class TopicController extends Controller
      * @param  string  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(\Http\Requests\TopicRequest $request, $id)
+    public function update(TopicRequest $request, $id)
     {
         $topic = Topic::find($id);
 
