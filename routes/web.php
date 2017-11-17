@@ -13,15 +13,44 @@
 
 Auth::routes();
 
-// Home
+/**
+ * Guest area
+ */
+
+// Pages
 Route::get('/', 'PageController@welcome')->name('welcome');
+Route::get('popular', 'PageController@postsPopular')->name('posts.popular');
+Route::get('recommendation', 'PageController@postsRecommendation')->name('posts.recommendation');
 
 // Connect
 Route::get('signin/{provider}', 'Auth\SocialController@redirectToProvider');
 Route::get('signin/{provider}/callback', 'Auth\SocialController@handleProviderCallback');
 Route::get('signout', 'SignoutController@signout')->name('signout');
 
-// Area administrator
+// Search
+Route::get('search', 'SearchController@search')->name('search');
+Route::get('autocomplete', 'SearchController@autocomplete');
+
+// Topics
+Route::get('topics', 'TopicController@index')->name('topics');
+Route::get('topic/{slug}', 'TopicController@show');
+
+// Show post
+Route::get('@{author}/{slug}', 'PostController@show')->name('posts.show');
+
+// Tags
+Route::get('tag/{slug}', 'TagController@show')->name('tag.show');
+Route::get('tag/{slug}/latest', 'TagController@latest')->name('tag.latest');
+Route::get('search-tags', 'TagController@search');
+
+// Profile
+Route::get('@{username}', 'ProfileController@profile');
+Route::get('@{username}/users/following', 'ProfileController@following')->name('following');
+Route::get('@{username}/users/followers', 'ProfileController@followers')->name('followers');
+
+/**
+ * Administrator area
+ */
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 	Route::get('/', 'Admin\PageController@dashboard')->name('dashboard');
 	Route::view('posts', 'admin.posts.index')->name('posts.index');
@@ -40,64 +69,46 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 	Route::get('api/users', 'Admin\ApiController@getUsersData')->name('users.data');
 });
 
-// Topics
-Route::get('topics', 'TopicController@index')->name('topics');
-Route::get('topic/{slug}', 'TopicController@show');
-
-// Posts
-Route::resource('posts', 'PostController', ['only' => ['store', 'update', 'destroy']]);
+/**
+ * User area
+ */
 Route::group(['middleware' => 'login'], function () {
+	// Me
+	Route::group(['prefix' => 'me'], function () {
+		Route::group(['prefix' => 'posts'], function () {
+			Route::get('drafts', 'UserController@draftPost')->name('drafts');
+			Route::get('public', 'UserController@publicPost')->name('public');
+		});
+	});
+
+	// Posts
+	Route::resource('posts', 'PostController', ['only' => ['store', 'update', 'destroy']]);
 	Route::get('new-post', 'PostController@create')->name('posts.create');
 	Route::get('{id}/edit', 'PostController@edit')->name('posts.edit');
-});
-Route::get('@{author}/{slug}', 'PostController@show')->name('posts.show');
 
-// Profile
-Route::get('@{username}', 'ProfileController@profile');
-Route::get('@{username}/users/following', 'ProfileController@following')->name('following');
-Route::get('@{username}/users/followers', 'ProfileController@followers')->name('followers');
+	// Bookmarks
+	Route::get('browse/bookmarks', 'BookmarkController@index')->name('bookmarks');
+	Route::post('bookmark/{bookmark}/{id}', 'BookmarkController@store');
+	Route::post('unbookmark/{id}', 'BookmarkController@destroy');
 
-// Me
-Route::group(['prefix' => 'me'], function () {
-	Route::group(['prefix' => 'posts'], function () {
-		Route::get('drafts', 'UserController@draftPost')->name('drafts');
-		Route::get('public', 'UserController@publicPost')->name('public');
+	// Likes
+	Route::post('like/{like}/{id}', 'LikeController@like');
+	Route::post('unlike/{id}', 'LikeController@unlike');
+
+	// Comments
+	Route::post('post/comment', 'CommentController@comment');
+	Route::get('{post}/comments', 'CommentController@data');
+
+	// Followables
+	Route::post('attach/{object}/{id}', 'FollowableController@attach');
+	Route::post('detach/{object}/{id}', 'FollowableController@detach');
+
+	// Mark notification as read
+	Route::get('mark-as-read/{id}','NotificationController@markAsRead');
+	Route::get('mark-all-as-read', function () {
+		auth()->user()->unreadNotifications->markAsRead();
 	});
+
+	// Posts form followers
+	Route::get('followers', 'PageController@postsFollowers')->name('posts.followers');
 });
-
-// Bookmarks
-Route::get('browse/bookmarks', 'BookmarkController@index')->name('bookmarks');
-Route::post('bookmark/{bookmark}/{id}', 'BookmarkController@store');
-Route::post('unbookmark/{id}', 'BookmarkController@destroy');
-
-// Likes
-Route::post('like/{like}/{id}', 'LikeController@like');
-Route::post('unlike/{id}', 'LikeController@unlike');
-
-// Comments
-Route::post('post/comment', 'CommentController@comment');
-Route::get('{post}/comments', 'CommentController@data');
-
-// Followables
-Route::post('attach/{object}/{id}', 'FollowableController@attach');
-Route::post('detach/{object}/{id}', 'FollowableController@detach');
-
-// Mark notification as read
-Route::get('mark-as-read/{id}','NotificationController@markAsRead');
-Route::get('mark-all-as-read', function () {
-	auth()->user()->unreadNotifications->markAsRead();
-});
-
-// Tags
-Route::get('tag/{slug}', 'TagController@show')->name('tag.show');
-Route::get('tag/{slug}/latest', 'TagController@latest')->name('tag.latest');
-Route::get('search-tags', 'TagController@search');
-
-// Search
-Route::get('search', 'SearchController@search')->name('search');
-Route::get('autocomplete', 'SearchController@autocomplete');
-
-// Pages
-Route::get('popular', 'PageController@postsPopular')->name('posts.popular');
-Route::get('recommendation', 'PageController@postsRecommendation')->name('posts.recommendation');
-Route::get('followers', 'PageController@postsFollowers')->name('posts.followers');
