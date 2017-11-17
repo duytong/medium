@@ -46,8 +46,8 @@
 @endsection
 @section('script')
     <script>
-        // Get data via API datatables using ajax.
-        $(function () {
+        /* Get data via API datatables using ajax. */
+        window.addEventListener('load', function () {
             $('#datatable').DataTable({
                 processing: true,
                 serverSide: true,

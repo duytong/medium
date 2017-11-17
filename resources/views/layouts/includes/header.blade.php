@@ -82,7 +82,11 @@
 								<img data-src="{{ auth()->user()->pathImage() }}" class="circle img-35 lazy">
 							</a>
 							<div class="dropdown-menu card-shadow py-2 bd-none font-size-14 user-action">
-								<a href="javascript:;" class="dropdown-item py-2 px-4 bg-none text-black">Become a member</a>
+								@if (auth()->user()->role == 1)
+									<a href="{{ route('dashboard') }}" class="dropdown-item py-2 px-4 bg-none text-black">Dashboard</a>
+								@else
+									<a href="javascript:;" class="dropdown-item py-2 px-4 bg-none text-black">Become a member</a>
+								@endif
 								<div class="dropdown-divider"></div>
 								<a href="{{ route('posts.create') }}" class="dropdown-item py-2 px-4 bg-none text-black">New post</a>
 								<a href="{{ route('drafts') }}" class="dropdown-item py-2 px-4 bg-none text-black">Posts</a>
